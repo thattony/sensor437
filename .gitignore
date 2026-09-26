@@ -1,0 +1,29 @@
+# Vivado generated files
+.Xil/
+*.cache/
+*.runs/
+*.gen/
+*.sim/
+*.hw/
+*.ip_user_files/
+
+# Vivado logs / simulation
+*.jou
+*.log
+*.str
+*.wdb
+
+# Generated FPGA outputs
+*.bit
+*.bin
+*.ltx
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / temporary files
+.vscode/
+*.tmp
+*.swp
+*~
