@@ -12,10 +12,15 @@ MILESTONE 2  you are no longer using the ILA, so load the bitstream from here.
 """
 
 import sys
+import os
 import time
 
-ok_loc = 'C:\\Program Files\\Opal Kelly\\FrontPanelUSB\\API\\Python\\3.6\\x64'
+ok_loc = r'C:\Program Files\Opal Kelly\FrontPanelUSB\API\Python\x64'
+ok_dll_loc = r'C:\Program Files\Opal Kelly\FrontPanelUSB\API\lib\x64'
+
 sys.path.append(ok_loc)
+os.add_dll_directory(ok_dll_loc)
+
 import ok
 
 # ---------------------------------------------------------------------------
@@ -115,7 +120,19 @@ def to_celsius(msb, lsb, thirteen_bit=True):
 
     Check yourself against the table below before you touch the board.
     """
-    raise NotImplementedError("to_celsius is yours to write")
+    # raise NotImplementedError("to_celsius is yours to write")
+    temperature = 0;
+    if thirteen_bit:
+        raw = ((msb<<8) | lsb)>>3
+        if msb & 0x80:
+            raw -= (1<<13)
+        temperature = raw * 0.0625
+    else:
+        raw = (msb<<8) | lsb
+        if msb & 0x80:
+            raw -= (1<<16)
+        temperature = raw * 0.0078125
+    return temperature
 
 
 # ---------------------------------------------------------------------------
@@ -157,7 +174,7 @@ def self_test():
 
 
 # Uncomment to check your conversion without the board attached:
-# self_test()
+self_test()
 
 
 # --- Step 1: the identification register --------------------------------

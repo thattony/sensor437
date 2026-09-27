@@ -32,7 +32,7 @@ module I2C_Transmit(
                                       .ILA_Clk(ILA_Clk) );
 
     // Slave address 0x48 with the R/W bit set to 1 (read)
-    reg [7:0] SingleByteData = 8'b1001_0001;
+    reg [7:0] SingleByteData = 8'b1001_0001;    // 8'b10010001 
     reg error_bit = 1'b1;
 
     localparam STATE_INIT = 8'd0;

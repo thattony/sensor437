@@ -13,6 +13,9 @@
 *.str
 *.wdb
 
+# Vivado design checkpoints
+*.dcp
+
 # Generated FPGA outputs
 *.bit
 *.bin
