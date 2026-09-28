@@ -28,7 +28,7 @@ import ok
 # ---------------------------------------------------------------------------
 # Milestone 1: MUST stay False. Vivado already programmed the FPGA over JTAG,
 # and calling ConfigureFPGA here would overwrite it, taking the ILA with it.
-LOAD_BITFILE = False
+LOAD_BITFILE = True
 BITFILE = "../verilog/I2C_Transmit.bit"     # relative path, do not copy bitfiles around
 
 WIRE_GO = 0x00          # WireIn: bit 0 starts the FSM
@@ -68,14 +68,14 @@ def start_fsm():
     dev.SetWireInValue(WIRE_GO, 0)
     dev.UpdateWireIns()
 
+# Uncomment for m1
+# print("Arming the ILA: press Play in Vivado's waveform window BEFORE continuing.")
+# input("Press Enter here once the ILA says 'Waiting for Trigger'...")
 
-print("Arming the ILA: press Play in Vivado's waveform window BEFORE continuing.")
-input("Press Enter here once the ILA says 'Waiting for Trigger'...")
-
-start_fsm()
-print("GO pulse sent. The ILA should have triggered.")
-print("Look for SDA going low on the ninth SCL clock - that low is the sensor.")
-print("-" * 52)
+# start_fsm()
+# print("GO pulse sent. The ILA should have triggered.")
+# print("Look for SDA going low on the ninth SCL clock - that low is the sensor.")
+# print("-" * 52)
 
 
 # ---------------------------------------------------------------------------
@@ -174,7 +174,7 @@ def self_test():
 
 
 # Uncomment to check your conversion without the board attached:
-self_test()
+# self_test()
 
 
 # --- Step 1: the identification register --------------------------------
@@ -183,10 +183,9 @@ self_test()
 # it is either exactly right or wrong. A temperature reading only ever looks
 # plausible, which tells you nothing about whether your FSM works.
 
-# start_fsm()
-# msb, lsb = read_raw()
-# print("ID register reads: 0x%02X   (datasheet value: 0x__)" % msb)
-
+start_fsm()
+msb, lsb = read_raw()
+print("ID register reads: 0x%02X   (datasheet value: 0xCB)" % msb)
 
 # --- Step 2: ten temperature readings -----------------------------------
 # Acceptance: every reading within +/- 2 C of the lab thermometer, AND the
