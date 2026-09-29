@@ -14,6 +14,9 @@ MILESTONE 2  you are no longer using the ILA, so load the bitstream from here.
 import sys
 import os
 import time
+import statistics
+import csv
+import matplotlib.pyplot as plt
 
 ok_loc = r'C:\Program Files\Opal Kelly\FrontPanelUSB\API\Python\x64'
 ok_dll_loc = r'C:\Program Files\Opal Kelly\FrontPanelUSB\API\lib\x64'
@@ -29,7 +32,8 @@ import ok
 # Milestone 1: MUST stay False. Vivado already programmed the FPGA over JTAG,
 # and calling ConfigureFPGA here would overwrite it, taking the ILA with it.
 LOAD_BITFILE = True
-BITFILE = "../verilog/I2C_Transmit.bit"     # relative path, do not copy bitfiles around
+# BITFILE = r".\Lab5.runs\impl_1\JTAG_Test_File.bit"    # relative path, do not copy bitfiles around
+BITFILE = r".\JTAG_Test_File_m2.bit"    # relative path, do not copy bitfiles around
 
 WIRE_GO = 0x00          # WireIn: bit 0 starts the FSM
 
@@ -183,9 +187,9 @@ def self_test():
 # it is either exactly right or wrong. A temperature reading only ever looks
 # plausible, which tells you nothing about whether your FSM works.
 
-start_fsm()
-msb, lsb = read_raw()
-print("ID register reads: 0x%02X   (datasheet value: 0xCB)" % msb)
+# start_fsm()
+# msb, lsb = read_raw()
+# print("ID register reads: 0x%02X   (datasheet value: 0xCB)" % msb)
 
 # --- Step 2: ten temperature readings -----------------------------------
 # Acceptance: every reading within +/- 2 C of the lab thermometer, AND the
@@ -200,9 +204,93 @@ print("ID register reads: 0x%02X   (datasheet value: 0xCB)" % msb)
 #     t = to_celsius(msb, lsb, thirteen_bit=True)
 #     temps.append(t)
 #     print("   %2d     0x%02X%02X     %7.4f" % (i + 1, msb, lsb, t))
-#
+
 # print("\n mean  %.4f C" % (sum(temps) / len(temps)))
 # print(" range %.4f C   (must be under 0.5)" % (max(temps) - min(temps)))
+
+
+# dev.Close()
+
+# --- Postlab: 100 temperature readings -----------------------------------
+
+print("\n reading    raw        degrees C")
+
+temps = []
+raw_values = []
+
+for i in range(100):
+    start_fsm()
+    time.sleep(0.05)
+
+    msb, lsb = read_raw()
+    t = to_celsius(msb, lsb, thirteen_bit=True)
+
+    temps.append(t)
+    raw_values.append((msb, lsb))
+
+    print("   %3d     0x%02X%02X     %7.4f"
+          % (i + 1, msb, lsb, t))
+
+
+# ---------------------------------------------------------------------------
+# Statistics for Post-Lab Question 3
+# ---------------------------------------------------------------------------
+
+mean_temp = statistics.mean(temps)
+std_temp = statistics.pstdev(temps)
+min_temp = min(temps)
+max_temp = max(temps)
+temp_range = max_temp - min_temp
+
+resolution = 0.0625    # C/count in 13-bit mode
+
+print("\nStatistics")
+print("Mean              = %.4f C" % mean_temp)
+print("Standard deviation= %.4f C" % std_temp)
+print("Minimum           = %.4f C" % min_temp)
+print("Maximum           = %.4f C" % max_temp)
+print("Full range        = %.4f C" % temp_range)
+print("13-bit resolution = %.4f C/count" % resolution)
+
+if std_temp < resolution:
+    print("Std. dev. is smaller than one 13-bit count.")
+else:
+    print("Std. dev. is greater than or equal to one 13-bit count.")
+
+
+# ---------------------------------------------------------------------------
+# Save all 100 readings
+# ---------------------------------------------------------------------------
+
+with open("lab5_temperature_100.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Sample", "MSB", "LSB", "Temperature_C"])
+
+    for i in range(100):
+        msb, lsb = raw_values[i]
+        writer.writerow([
+            i + 1,
+            "0x%02X" % msb,
+            "0x%02X" % lsb,
+            "%.4f" % temps[i]
+        ])
+
+
+# ---------------------------------------------------------------------------
+# Plot for Post-Lab Question 3
+# ---------------------------------------------------------------------------
+
+samples = range(1, 101)
+
+plt.figure()
+plt.plot(samples, temps, marker="o", markersize=3)
+plt.xlabel("Sample Number")
+plt.ylabel("Temperature (C)")
+plt.title("100 Consecutive ADT7420 Temperature Readings")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("lab5_temperature_plot.png", dpi=300)
+plt.show()
 
 
 dev.Close()
