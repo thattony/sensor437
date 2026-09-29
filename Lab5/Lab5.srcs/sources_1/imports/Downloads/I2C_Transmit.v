@@ -23,7 +23,7 @@ module I2C_Transmit(
 
     //Instantiate the ClockGenerator module, where three signals are generate:
     //High speed CLK signal, Low speed FSM_Clk signal
-    wire [23:0] ClkDivThreshold = 100;
+    wire [23:0] ClkDivThreshold = 50;
     wire FSM_Clk, ILA_Clk;
     ClockGenerator ClockGenerator1 (  .sys_clkn(sys_clkn),
                                       .sys_clkp(sys_clkp),
@@ -284,86 +284,87 @@ module I2C_Transmit(
         endcase
     end
 
-// Uncomment for temperature reg
-// ***************************************************
-// Transmit ACK to sensor after receiving MSB
-// ***************************************************
-            8'd146 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'b0; end 
-            8'd147 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd148 :  begin  SCL <= 1'b1; State <= State + 1'b1; end 
-            8'd149 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//// Uncomment for temperature reg
+//// ***************************************************
+//// Transmit ACK to sensor after receiving MSB
+//// ***************************************************
+//            8'd146 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'b0; end 
+//            8'd147 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd148 :  begin  SCL <= 1'b1; State <= State + 1'b1; end 
+//            8'd149 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-// ***************************************************
-// Receive LSB from the sensor
-// ***************************************************
-            8'd150 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 7
-            8'd151 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd152 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[7] <= sda_in; end
-            8'd153 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//// ***************************************************
+//// Receive LSB from the sensor
+//// ***************************************************
+//            8'd150 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 7
+//            8'd151 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd152 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[7] <= sda_in; end
+//            8'd153 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd154 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 6
-            8'd155 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd156 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[6] <= sda_in; end
-            8'd157 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd154 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 6
+//            8'd155 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd156 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[6] <= sda_in; end
+//            8'd157 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd158 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 5
-            8'd159 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd160 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[5] <= sda_in; end
-            8'd161 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd158 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 5
+//            8'd159 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd160 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[5] <= sda_in; end
+//            8'd161 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd162 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 4
-            8'd163 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd164 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[4] <= sda_in; end
-            8'd165 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd162 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 4
+//            8'd163 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd164 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[4] <= sda_in; end
+//            8'd165 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd166 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 3
-            8'd167 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd168 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[3] <= sda_in; end
-            8'd169 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd166 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 3
+//            8'd167 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd168 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[3] <= sda_in; end
+//            8'd169 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd170 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 2
-            8'd171 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd172 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[2] <= sda_in; end
-            8'd173 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd170 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 2
+//            8'd171 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd172 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[2] <= sda_in; end
+//            8'd173 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd174 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 1
-            8'd175 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd176 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[1] <= sda_in; end
-            8'd177 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd174 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 1
+//            8'd175 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd176 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[1] <= sda_in; end
+//            8'd177 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-            8'd178 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 0
-            8'd179 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd180 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[0] <= sda_in; end
-            8'd181 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//            8'd178 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end   // receive bit 0
+//            8'd179 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd180 :  begin  SCL <= 1'b1; State <= State + 1'b1; ReceivedData_lsb[0] <= sda_in; end
+//            8'd181 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-// ***************************************************
-// Transmit NACK to sensor
-// ***************************************************
-            8'd182 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end
-            8'd183 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd184 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
-            8'd185 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
+//// ***************************************************
+//// Transmit NACK to sensor
+//// ***************************************************
+//            8'd182 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'bz; end
+//            8'd183 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd184 :  begin  SCL <= 1'b1; State <= State + 1'b1; end
+//            8'd185 :  begin  SCL <= 1'b0; State <= State + 1'b1; end
 
-// ***************************************************
-// Stop sequence: SDA rises while SCL is high
-// ***************************************************
-            8'd186 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'b0; end
-            8'd187 :  begin  SCL <= 1'b1; State <= State + 1'b1; SDA <= 1'b0; end
-            8'd188 :  begin  SCL <= 1'b1; State <= State + 1'b1; SDA <= 1'b1; end
-            8'd189 :  begin  SCL <= 1'b1; SDA <= 1'b1; State <= STATE_INIT; end
+//// ***************************************************
+//// Stop sequence: SDA rises while SCL is high
+//// ***************************************************
+//            8'd186 :  begin  SCL <= 1'b0; State <= State + 1'b1; SDA <= 1'b0; end
+//            8'd187 :  begin  SCL <= 1'b1; State <= State + 1'b1; SDA <= 1'b0; end
+//            8'd188 :  begin  SCL <= 1'b1; State <= State + 1'b1; SDA <= 1'b1; end
+//            8'd189 :  begin  SCL <= 1'b1; SDA <= 1'b1; State <= STATE_INIT; end
 
-            //If the FSM ends up here, there was an error in the FSM code.
-            //LED[6] will turn on (active low) in that case.
-            default : begin  error_bit <= 0; end
+//            //If the FSM ends up here, there was an error in the FSM code.
+//            //LED[6] will turn on (active low) in that case.
+//            default : begin  error_bit <= 0; end
 
-        endcase
-    end
+//        endcase
+//    end
 
 
     // OK Interface
     localparam integer endPt_count = 2;
     wire [112:0]    okHE;  //These are FrontPanel wires needed to IO communication
     wire [64:0]     okEH;  //These are FrontPanel wires needed to IO communication
+    wire [endPt_count*65-1:0] okEHx;
     wire            okClk;
 
     //This is the OK host that allows data to be sent or recived
