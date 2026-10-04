@@ -1,0 +1,19 @@
+# Vivado build products (bitfile/ is kept on purpose)
+build/
+*.jou
+*.log
+*.str
+.Xil/
+vivado_*.backup.*
+# Python
+.venv/
+__pycache__/
+*.pyc
+# Simulation
+sim/xsim.dir/
+sim/*.wdb
+sim/*.vcd
+sim/*.pb
+sim/webtalk*
+# OS
+.DS_Store

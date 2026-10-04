@@ -7,7 +7,10 @@
 *.hw/
 *.ip_user_files/
 
-# Vivado logs / simulation
+# Lab/Vivado generated build output
+build/
+
+# Vivado logs / simulation output
 *.jou
 *.log
 *.str
@@ -21,12 +24,26 @@
 *.bin
 *.ltx
 
-# Python
+# Python generated files
 __pycache__/
 *.pyc
+*.pyo
+
+# Python virtual environments
+.venv/
+.venv*/
+venv/
+envi/
+
+# Claude local settings
+.claude/
 
 # Editor / temporary files
 .vscode/
 *.tmp
 *.swp
 *~
+
+# OS files
+.DS_Store
+Thumbs.db

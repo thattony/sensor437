@@ -1,0 +1,56 @@
+FrontPanel Subsystem IP Version 1.0 (Rev. 6)
+ 2024-06-14
+ * Add XEM8305-AU15P-2E board support
+ * Add XEM8305-AU15P-1E board support
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 5)
+ 2024-01-25
+ * Add XEM8370-KU11P board support
+ * Update the block diagram artwork for all boards.
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 4)
+ 2023-12-04
+ * For both okClk and okClks, establish a new interface of the clock_rtl type and
+   set their FREQ_HZ parameter to 100800000 Hz. This enables automatic frequency
+   propagation in the IPI block designer.
+ * Fixed an issue where using capital hexadecimal address values would trigger the error
+   message: 'Named port connection 'xyz' does not exist.'
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 3)
+ 2023-08-21
+ * Minor GUI changes
+ * Add closing "`default_nettype wire" directive to several example
+   design files that also implement "`default_nettype none" at the
+   beginning of the file. This modification addresses potential errors
+   encountered with our encrypted FrontPanel HDL files, such as the
+   "[Synth 8-5809] Error generated from encrypted envelope" error.
+ * Removed Autofill feature in FrontPanel Vivado IP Core due to Vivado IP handling
+   changes that started with Vivado version 2022.2; manual endpoint address entry 
+   now required.
+ * Users are advised not to use prior versions of the FrontPanel Vivado IP Core
+   with Vivado versions 2022.2 and onwards. This version of FrontPanel Vivado IP
+   Core resolves the following issues in those Vivado versions:
+     * Resolves "CRITICAL WARNING: [IP_Flow 19-5622] Failed to create IP instance."
+     * Resolves "You cannot have two endpoints with the same address" error in the TCL
+       console. The error occurs after pressing "OK" in the GUI, even though the GUI
+       did not report these errors initially.
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 2)
+ 2023-03-21
+ * Minor GUI changes
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 1)
+ 2022-10-12
+ * Add XEM8350-KU115 board support
+ * Add XEM7320-A200 board support
+ * Resolve "[Synth 8-5809] Error generated from encrypted envelope"
+   error when using a Vivado version ealier than v2021.1 by adding
+   2017 key encrypted sources for all applicable boards
+ * Add Vivado version compatibility restrictions for each board
+ * Restrict IP Core from being used with XEM8320-AU25P board file
+   v1.0 or v1.1 as these have not yet implemented the host_interface or
+   host_interface_s board interfaces
+
+FrontPanel Subsystem IP Version 1.0 (Rev. 0)
+ 2022-09-14
+ * Initial creation

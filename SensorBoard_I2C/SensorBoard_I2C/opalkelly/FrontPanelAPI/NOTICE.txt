@@ -1,0 +1,11 @@
+OpalKelly FrontPanel SDK 5.3.6 runtime files (macOS, universal x86_64/arm64):
+
+  libokFrontPanel.dylib   native FrontPanel library
+  Python/ok.py            Python wrapper
+  Python/_ok.so           Python extension (loads libokFrontPanel.dylib via @rpath)
+  okFrontPanel.h, okFrontPanelDLL.h   C/C++ headers (reference only)
+
+These are the end-user redistributable API files from Opal Kelly's FrontPanel SDK
+(https://opalkelly.com). On Windows or Linux, install the FrontPanel SDK from
+Opal Kelly and point the scripts at it with:  OK_API_PATH=<SDK>/API/Python/<ver>/x64
+(Windows) or the directory containing ok.py and libokFrontPanel.so (Linux).

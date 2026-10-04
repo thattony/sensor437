@@ -1,0 +1,6 @@
+# No PyPI dependencies - standard library only.
+#
+# The OpalKelly FrontPanel Python module ("ok") is not on PyPI. fp_api.py loads
+# it from ../opalkelly/FrontPanelAPI (bundled macOS universal build, SDK 5.3.6)
+# or from an installed FrontPanel SDK (set OK_API_PATH to its API directory on
+# Windows/Linux). Verified with Python 3.14 on macOS arm64.

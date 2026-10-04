@@ -1,0 +1,21 @@
+<: set board [get_parameter_property "BOARD"]:>
+<: set boardfile [get_property PROJECT_PARAM.BOARD] :>
+<: if {$board != "XEM8370-KU11P"} { ttcl_return; }:>
+<: setFileName "xem8370" :>
+<: setFileExtension ".xdc" :>
+<: setOutputDirectory "./gateware":>
+<: :>
+<: if { $boardfile == ""} { :>
+# LEDS #####################################################################
+set_property PACKAGE_PIN E20 [get_ports {led_out[0]}]
+set_property PACKAGE_PIN F20 [get_ports {led_out[1]}]
+set_property PACKAGE_PIN G20 [get_ports {led_out[2]}]
+set_property PACKAGE_PIN E21 [get_ports {led_out[3]}]
+set_property PACKAGE_PIN F23 [get_ports {led_out[4]}]
+set_property PACKAGE_PIN G24 [get_ports {led_out[5]}]
+set_property PACKAGE_PIN F24 [get_ports {led_out[6]}]
+set_property PACKAGE_PIN F25 [get_ports {led_out[7]}]
+<: } :>
+set_property IOSTANDARD LVCMOS18 [get_ports {led_out[*]}]
+set_property DRIVE 8 [get_ports {led_out[*]}]
+set_false_path -to [get_ports {led_out[*]}]
