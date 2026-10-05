@@ -23,7 +23,7 @@ module I2C_Transmit(
 
     //Instantiate the ClockGenerator module, where three signals are generate:
     //High speed CLK signal, Low speed FSM_Clk signal
-    wire [23:0] ClkDivThreshold = 50;
+    wire [23:0] ClkDivThreshold = 30;
     wire FSM_Clk, ILA_Clk;
     ClockGenerator ClockGenerator1 (  .sys_clkn(sys_clkn),
                                       .sys_clkp(sys_clkp),

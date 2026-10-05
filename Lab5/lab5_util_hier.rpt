@@ -1,0 +1,46 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sun Oct  4 21:01:59 2026
+| Host         : ECEB-4022-16 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file U:/ece437/Lab5/lab5_util_hier.rpt
+| Design       : JTAG_Test_File
+| Device       : xc7a75tfgg484-1
+| Speed File   : -1
+| Design State : Synthesized
+------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+|       Instance       |         Module         | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+| JTAG_Test_File       |                  (top) |        831 |        799 |      32 |    0 | 785 |      1 |      2 |          0 |
+|   (JTAG_Test_File)   |                  (top) |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
+|   I2C_Test1          |           I2C_Transmit |        831 |        799 |      32 |    0 | 785 |      1 |      2 |          0 |
+|     (I2C_Test1)      |           I2C_Transmit |         45 |         45 |       0 |    0 |  21 |      0 |      0 |          0 |
+|     ClockGenerator1  |         ClockGenerator |         10 |         10 |       0 |    0 |  31 |      0 |      0 |          0 |
+|     hostIF           |                 okHost |        670 |        638 |      32 |    0 | 723 |      1 |      2 |          0 |
+|       (hostIF)       |                 okHost |          2 |          2 |       0 |    0 |  86 |      0 |      0 |          0 |
+|       core0          |          okCoreHarness |        668 |        636 |      32 |    0 | 637 |      1 |      2 |          0 |
+|         (core0)      |          okCoreHarness |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
+|         core0        |                 okCore |        668 |        636 |      32 |    0 | 637 |      1 |      2 |          0 |
+|           (core0)    |                 okCore |        640 |        608 |      32 |    0 | 609 |      1 |      1 |          0 |
+|           a0/cb0     |               ok_tfifo |         28 |         28 |       0 |    0 |  28 |      0 |      1 |          0 |
+|             (a0/cb0) |               ok_tfifo |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
+|             U0       | fifo_generator_v13_2_5 |         28 |         28 |       0 |    0 |  28 |      0 |      1 |          0 |
+|     wire10           |               okWireIn |          4 |          4 |       0 |    0 |   2 |      0 |      0 |          0 |
+|     wire20           |           okWireOut__1 |         35 |         35 |       0 |    0 |   8 |      0 |      0 |          0 |
+|     wire21           |              okWireOut |         35 |         35 |       0 |    0 |   0 |      0 |      0 |          0 |
+|     wireOR           |               okWireOR |         32 |         32 |       0 |    0 |   0 |      0 |      0 |          0 |
+|   ila_sample12       |                  ila_0 |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
++----------------------+------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+
