@@ -23,8 +23,18 @@ Write-Host "`n===== 3. I2C DEVICE SCAN ====="
 
 Read-Host "Press Enter for simulation"
 
-Write-Host "`n===== 4. SIMULATION ====="
-& $bash ./build.sh --sim
+# Write-Host "`n===== 4. SIMULATION ====="
+# & $bash ./build.sh --sim
 
-Write-Host "`n===== LAST 50 LINES OF SIM LOG ====="
-Get-Content .\sim\sim.log -Tail 50
+Write-Host "`n===== SIM LOG ====="
+Get-Content .\sim\sim.log -Tail 160
+
+Read-Host "Press Enter for ADT7420 ID REGISTER"
+
+Write-Host "`n===== M2.2 HARDWARE: ADT7420 ID REGISTER ====="
+& $python .\python\lab6_python.py --addr 0x48 --reg 0x0B
+
+Read-Host "`nPress Enter for absent-device test"
+
+Write-Host "`n===== M2.3 HARDWARE: ABSENT DEVICE 0x49 ====="
+& $python .\python\lab6_python.py --addr 0x49 --reg 0x0B
