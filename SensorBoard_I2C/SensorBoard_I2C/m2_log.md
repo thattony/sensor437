@@ -285,3 +285,27 @@ Hardware read time 38594–38740 cycles (≈383–384 µs) vs 38804 in simulatio
 
 What was missing from attempt 1: nothing — passed on the first attempt (no code change was needed;
 the only edits in this step were testbench frame 3d and the new `python/lab6_python.py`).
+
+---
+
+# Milestone 3 Comparison
+
+| Metric | Lab 5 | Lab 6 | Source / Notes |
+|---|---|---|---|
+| LUT | 45 | 112 | Lab 5: lab5_util_hier.rpt, (I2C_Test1) own-logic row; Lab 6: build/post_synth_utilization_hier.rpt, u_i2c |
+| FF | 21 | 48 | Same reports |
+| States | 154 | 154 | Lab 5: states 0–153 from source; Lab 6: FSM extraction in build/build.log |
+| Encoding | 8-bit binary | sequential, 8-bit | Lab 5 source; Lab 6 synthesis log |
+| SCL | 100.8 kHz calculated | 100.0 kHz calculated | Lab 5 normalized with ClkDivThreshold = 30 |
+| t_HIGH | 4.96 us calculated | 5.00 us calculated | Physical scope measurement still pending |
+| t_LOW | 4.96 us calculated | 5.00 us calculated | Physical scope measurement still pending |
+| Duty cycle | 50% calculated | 50% calculated | Physical scope measurement still pending |
+| Complete read time | 379.4 us calculated | 382.9–384.3 us measured on hardware | Lab 5: 153 states x 2.48 us; Lab 6: result2 |
+| NACK behavior | Continues transaction and returns to state 0; NACK not reported to PC | error = 1, state = 0; next valid read succeeds | Lab 6 verified on hardware |
+
+- Lab 6 uses 112/45 = 2.49x the LUTs of Lab 5.
+- Lab 6 uses 48/21 = 2.29x the FFs of Lab 5.
+- Lab 5 and Lab 6 are sufficiently normalized for timing comparison: 100.8 kHz vs 100.0 kHz, both 50% duty cycle.
+- Lab 5 is about 3–5 us faster after normalization, mainly because its state period is 2.48 us instead of 2.50 us.
+- Both calculated timing sets satisfy the ADT7420 timing requirements.
+- Remaining Milestone 3 physical measurements: SCL, t_HIGH, t_LOW, and duty cycle on the board for both designs.
