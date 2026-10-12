@@ -1,0 +1,10 @@
+quantity,value
+captures,10
+rise_mean_s,9.2482e-07
+rise_std_s,1.1327e-08
+fall_mean_s,8.3189e-09
+fall_std_s,5.3403e-11
+tau_from_rise_s,4.2090e-07
+tau_fit_s,4.3142e-07
+R_pullup_ohm,10000
+C_bus_F,4.2090e-11

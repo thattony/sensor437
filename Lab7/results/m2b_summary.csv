@@ -1,0 +1,7 @@
+loop,f_peak_Hz,amp60_Vpeak,noise_floor_V,samples,srate_Sa_s,vdiv,captured
+short,60.000,2.069602e-04,1.624201e-06,2000000,2e+06,0.02,2026-10-12 12:27:57
+long,60.000,4.812651e-03,3.185627e-06,2000000,2e+06,0.02,2026-10-12 12:31:20
+amplitude_ratio_long_over_short,23.2540
+short_area_cm2,1
+long_area_cm2,900
+area_ratio_long_over_short,900.0000

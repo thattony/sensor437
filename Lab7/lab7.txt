@@ -1,0 +1,156 @@
+Lab 7: Characterisation and the Limits of Measurement
+
+You now have both halves of an automated test bench. Lab 5 got data out of the temperature sensor. Lab 4 got instruments to do what Python tells them. This week you put them together and use them to answer a question you have been circling all semester.
+
+The question is: how good is this measurement, and what is stopping it from being better?
+
+You will find three floors this week, and none of them is written down anywhere.
+
+The sensor's floor.
+Average more readings and the noise falls, until it stops falling. Where it stops, and why, is a property of the ADT7420 you measure rather than look up.
+
+The instrument's floor.
+Point a multimeter and an oscilloscope at the same quiet node and they will disagree about how noisy it is. Neither is broken. They are answering different questions.
+
+The bus's floor.
+The ADT7420 datasheet permits 400 kHz on I2C. Your board may not. The limit is a resistor and a capacitance that appears on no drawing, and you will find it with an oscilloscope.
+
+
+What Is Due, and When
+
+Lab 7 - Pre Lab (individual)
+- 15 points
+- Due: Start of your lab session
+
+Lab 7 - Milestones (in pairs, demonstrated)
+- 60 points
+- Due: First 60 minutes of your next lab session
+
+Lab 7 - Post Lab (individual)
+- 25 points
+- Due: First 60 minutes of your next lab session
+
+Total: 100 points
+
+The demonstration and the written work are due at the same moment: the first 60 minutes of the following session. Late submission costs 10% per hour.
+
+
+Files for This Lab
+
+lab4/reference
+- Keysight E3631A power supply manual
+- 34461A multimeter manual
+- MSO-X 3024T oscilloscope manual
+- PyVISA documentation
+
+Shared Files/code
+- xem7310_v1_fixed.xdc
+- the board constraints, identical in every lab
+
+Shared Files/reference
+- Sensor board layout and schematic
+- Opal Kelly FrontPanel documentation
+
+There is no new code for this lab. You bring your own working I2C design and you write the instrument control yourself.
+
+
+The Power Resistor Board
+
+A small board carries a power resistor with its two terminals brought out on RCA cables. Drive it from the supply and it dissipates power as heat. It mates with the sensor board so that heat reaches the ADT7420.
+
+Figure 1. The power resistor board, and how it mates with the sensor board. Do not connect them together yet.
+
+Figure 2. The resistor, close enough to read the colour bands. Pre lab question 1 asks you to decode them before you arrive.
+
+This resistor gets hot enough to burn you.
+
+Once it is connected to the supply, do not touch it. Do not touch it immediately after switching off either, because it holds heat.
+
+It is also easy to destroy. Its rating is 0.5 W, and exceeding that will cook it in seconds. Pre lab question 1 makes you work out the voltage limit before you arrive, and the TA checks your number before you turn anything on.
+
+
+Two layers of protection
+
+Set the supply's own current limit so the hardware cannot deliver damaging power even if your code misbehaves. Then, in software, read back voltage and current at every step, compute the power, and shut the output off if it approaches the limit.
+
+Belt and braces. The hardware limit protects you from your software; the software check protects you from a mis-set hardware limit. Real instrument control always has both.
+
+
+Before You Measure Noise, Choose a Resolution
+
+The ADT7420 powers up in 13-bit mode, where one count is 0.0625 deg C. On a stable bench the part's own conversion-to-conversion noise is smaller than that, so every reading lands on the same code and the standard deviation you compute is exactly zero.
+
+A standard deviation of zero is not a good result.
+
+It means the quantiser is coarser than the thing you are trying to measure, so there is no information in the data to average. No amount of collecting more of it will help.
+
+Write the configuration register to put the part in 16-bit mode, where one count is 0.0078 deg C, and the real noise becomes visible. This is the same lesson as choosing an oscilloscope range, arriving on your own sensor: before you average anything, check you are not throwing away the signal at the front end.
+
+Milestone 1c requires 16-bit mode. Your Lab 5 machine already does a register write when it sets the pointer, so this is one more byte in a sequence you have built before. Find the configuration register and the resolution bit in the datasheet.
+
+Read the ID register first, as you did in Lab 5, and confirm your conversion still gives sensible temperatures after the mode change. The scale factor is different in 16-bit mode, and forgetting that produces readings that are wrong by a factor of eight while still looking like temperatures.
+
+
+Generate the Instrument Control
+
+You are expected to use a language model here, and for a specific reason: SCPI is an ideal generation target. It is exhaustively documented, syntactically rigid, and nobody's understanding of instrumentation is deepened by hand-typing MEASure:VOLTage:DC? P25V.
+
+The oscilloscope manual is about 1400 pages. That is a lookup problem, not a learning objective.
+
+What you are graded on is everything downstream of that.
+
+
+Generated instrument control needs a referee, and it is not the one you used before
+
+When you drove the sensor, the acknowledgment was a bit driven by hardware you do not control: it either came or it did not.
+
+SCPI has nothing like that. A malformed command produces an error the instrument reports only if you ask, and a valid but wrong command returns a perfectly good measurement of the wrong thing.
+
+So you get two referees, and both are mandatory in this lab:
+
+SYSTem:ERRor? after every command
+- catches malformed SCPI, wrong parameter counts, unsupported settings
+- the instrument knew, and was waiting to be asked
+
+A known value, measured first
+- catches valid commands pointed at the wrong channel, wrong function, or wrong range
+- measure something whose answer you already know before you trust a sweep of things you do not
+
+For the known value, the diode from Lab 4 works well, and so does the 120 ohm resistance across P2 and P3. Room temperature works for the sensor. Get one number you can verify, and only then start sweeping.
+
+
+Everything in Python
+
+No cursor placement. No front-panel knobs. No numbers typed in from a screen.
+
+This is not pedantry. The opening argument of Lab 4 was that ten thousand readings by hand is slow and error-prone, and this week you actually need thousands. It also means every measurement you make is reproducible: when a result looks strange you rerun the script instead of trying to remember where you put the cursor.
+
+Rise time is computed from the captured array, not read off scope cursors. Interpolate the 10% and 90% crossings in numpy.
+
+More accurate than a cursor, and repeatable across the configurations you will compare.
+
+Waveform transfer needs the preamble. The scope returns raw ADC counts. Converting to volts and seconds requires the x-increment, x-origin, y-increment and y-origin from the waveform preamble query. Skip it and you get a plot with the right shape and meaningless axes. A good check: your 3.3 V logic high should read 3.3 V.
+
+
+What You Upload
+
+Two Canvas assignments, and the code and the report go to different ones.
+
+Lab 7 - Milestones
+- lab7_m1.py
+- lab7_m2.py
+- lab7_i2c.v
+- upload as three separate files before your demonstration
+
+Lab 7 - Post Lab
+- lab7_postlab.pdf
+- due by the same deadline
+
+The code has to be uploaded before the demo, not after.
+
+The TA checks Canvas before starting and will not begin until your three files are showing as submitted. A demonstration with no code submitted scores zero for the milestone, whatever the bench did.
+
+
+Next
+
+The Lab 7 - Pre Lab is due before your session and question 1 gates your bench access. Both measurements are on Lab 7 - Milestones.
