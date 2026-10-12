@@ -1,0 +1,157 @@
+Lab 7: Milestones
+Lab 7: Noise, Averaging, and the Limits of Measurement
+
+The resistor gets hot, and it is the only thing here that can hurt you
+
+Set the hardware current limit on the supply before the output is enabled, at the value you computed in pre lab question 1.
+
+Then write a software cutoff that switches the output off if measured power exceeds your limit, and have it live for every sweep in this lab. The TA will ask you to trigger it deliberately.
+
+The hardware limit protects the resistor from your code. The software cutoff protects it from a supply that is doing exactly what it was told.
+
+
+Milestone 1: The sensor's floor (30 points)
+
+1a. Heat the sensor, and watch the settling
+
+Mate the resistor board with the sensor board. Sweep five power levels spanning your range. At each one, let the temperature settle, then take 100 readings from the ADT7420 in 16-bit mode.
+
+- Plot mean temperature against applied power.
+- Plot the standard deviation of temperature against mean temperature.
+- Your software cutoff must be live throughout, and you must be able to show it working.
+
+Settling is not instant, and it is why this is five points and not ten
+
+The resistor heats the sensor through a thermal path with its own time constant. Take readings too soon after a voltage change and you are measuring a temperature that is still moving, which inflates the standard deviation for reasons that have nothing to do with sensor noise.
+
+Decide how long to wait and be ready to justify it, ideally from your own data rather than a guess. Five well-settled points are worth more than ten rushed ones.
+
+
+1b. The averaging law
+
+At one fixed temperature, in 16-bit mode, take at least 1000 consecutive readings as fast as your loop will run, and record the wall-clock time the run took.
+
+1. Compute the standard deviation of the average of N readings, for N = 1, 2, 4, 8 and so on up to a few hundred.
+2. Plot on log-log axes against a sqrt(N) reference line.
+3. Find where your data leaves the line, and record the N at which it happens.
+4. Then take 100 more readings, one every 300 ms, and compute the standard deviation of that set. Compare it with the standard deviation of your first 100 fast readings.
+
+The last step is the whole point of this milestone
+
+Same sensor, same code, same number of samples. The only thing that changed is how long you waited between asking.
+
+If the two standard deviations differ, you have measured the difference between a reading and an independent reading. Averaging only ever helped you with the second kind.
+
+
+16-bit mode is not optional here
+
+The part powers up in 13-bit mode, where one count is 0.0625 deg C. On a settled bench the sensor is quieter than that, so every reading comes back identical and the standard deviation is exactly zero. There is nothing to plot and nothing to average.
+
+Write the resolution bit before you start, and be ready to point at the line that does it.
+
+
+Milestone 2: The instrument's floor, and the bus's (30 points)
+
+2a. Integration time
+
+The multimeter's integration time is set in NPLC, number of power line cycles. Sweep it across the full range your meter supports, and at each setting take 200 readings of a fixed node and record the standard deviation.
+
+Plot standard deviation against integration time on log axes.
+
+One power line cycle is 16.7 ms at 60 Hz
+
+Think about what integrating over exactly that interval does to a 60 Hz interference signal, and what happens when you integrate over a fraction of one instead.
+
+The meter is not getting quieter as you turn the knob. It is doing something specific to one frequency, and the post lab asks you what.
+
+
+2b. The loop you built by accident
+
+Capture the same node with the scope in two configurations, and take an FFT of each in Python:
+
+1. Probe ground spring, the shortest possible return.
+2. A long wire from the probe ground to the supply's ground terminal, making the largest loop you can.
+
+Photograph or measure both loops so you can estimate their enclosed areas. The post lab asks whether your two 60 Hz amplitudes are consistent with the ratio of those areas.
+
+
+2c. The I2C bus
+
+Your board has four through-holes labelled SCL_0, SDA_0, SCL_1 and SDA_1. They exist so the bus can be probed.
+
+1. Modify your I2C design to raise a marker output on a PMOD pin during the state just before the ACK, and trigger the scope on it.
+2. Capture SDA through the acknowledgment.
+3. Measure the 10-90% rise time and the fall time of that SDA edge, computed in Python from the captured array.
+
+Use the PMOD ground pin next to your signal pin as the scope reference. It is right there, and it gives you the shortest possible return.
+
+Why that particular edge
+
+On the ninth clock your FPGA has released SDA and the sensor pulls it low. So one capture shows both halves of open drain in sequence: a slow rise where nothing is driving and only the pull-up is charging the wire, then a fast fall where a transistor is actively pulling it down.
+
+The asymmetry is the whole point, and it proves the acknowledgment arrived.
+
+
+Demo & Submission
+
+Upload three separate files to this assignment, with exactly these names.
+
+lab7_m1.py
+- the power sweep, the software cutoff, and the averaging analysis
+
+lab7_m2.py
+- the NPLC sweep, the FFTs and the edge capture
+
+lab7_i2c.v
+- your I2C design with the 16-bit mode write and the PMOD marker output
+
+Your post lab PDF goes to the separate Lab 7 - Post Lab assignment.
+
+
+The rules, in full
+
+Code uploaded, then demonstrated
+- graded normally on the checks below
+
+Files missing or misnamed, noticed at the demo
+- fix it there and then. The TA waits. No penalty.
+
+No code submitted by the deadline
+- milestone scores 0, regardless of the demonstration
+
+Demonstration and upload both late
+- 10% per hour, applied to the milestone as a whole
+
+Due: the first 60 minutes of your next lab session, the same deadline as the post lab.
+
+
+What the TA Checks
+
+0. Opens this assignment in Canvas before starting
+   - all three files are submitted and correctly named.
+
+1. Asks for your pre lab voltage limit before any power is applied
+   - a number, with the worst-case tolerance arithmetic behind it.
+
+2. Watches the supply being set up
+   - the hardware current limit is set before the output is enabled.
+
+3. Asks you to trigger the software cutoff
+   - the output switches off, and your Python says why.
+
+4. Asks which resolution mode the sensor is in
+   - 16-bit, and you can point at the register write that put it there.
+
+5. Looks at your log-log plot
+   - a sqrt(N) reference line, and a visible departure with the N marked.
+
+6. Compares your fast 100 readings with your one-every-300-ms 100
+   - two different standard deviations, from the same code.
+
+7. Looks at the two FFTs
+   - the large loop shows a 60 Hz line the small one does not.
+
+8. Looks at the scope capture of the ACK edge
+   - a slow rise and a fast fall on the same trace, with both times computed in Python.
+
+Checks 4 and 6 are the two that decide whether Milestone 1b produced data at all. In 13-bit mode the standard deviation is zero and there is nothing to plot; reading as fast as possible gives you repeats rather than samples.

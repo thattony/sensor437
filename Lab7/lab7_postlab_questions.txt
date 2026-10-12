@@ -1,0 +1,78 @@
+Lab 7: Post Lab Questions
+
+Everything here comes from work you already did.
+The averaging plot, the two hundred-reading sets, the NPLC sweep, both FFTs and the edge capture were all produced during the milestones. There is nothing new to measure.
+
+If you find yourself powering the resistor again, you are answering a question that was not asked.
+
+Due: the first 60 minutes of your next lab session, the same deadline as the demonstration.
+Late submission costs 10% per hour.
+
+
+Question 1: Where averaging stops helping (10 points)
+
+a. Include your log-log plot of sigma against N with the sqrt(N) reference line.
+   Over what range of N does your data follow the line, and at what N does it leave?
+
+b. The two hundred-reading sets.
+   Report both standard deviations: the fast one, and the one taken every 300 ms.
+   Same sensor, same code, same sample count.
+   Explain the difference in terms of how long the sensor takes to produce a genuinely new conversion,
+   and say which of the two sets averaging could actually have helped.
+
+c. Compare the flat region of your plot with one count of the 16-bit resolution, and with LSB/sqrt(12).
+   Which is larger, and what does that tell you about what you were measuring once the curve went flat?
+
+Part (b) is the one worth getting right.
+Reading faster does not give you more information; it gives you the same information more times,
+and averaging identical numbers achieves nothing at all.
+
+
+Question 2: What integration time does (5 points)
+
+a. Plot your NPLC sweep: standard deviation against integration time, on log axes.
+
+b. At NPLC = 1 the meter integrates over exactly one mains period.
+   Explain what that does to a 60 Hz interference signal, and why the reading is so much quieter there
+   than at the shortest setting.
+   Then say what the meter is doing to the signal that a single scope sample is not.
+
+
+Question 3: The loop you built by accident (5 points)
+
+a. Include both FFTs on common axes and report the amplitude at 60 Hz in each.
+   Estimate the enclosed area of the two loops.
+   The induced voltage is proportional to that area.
+   Does the ratio of your two amplitudes match the ratio of your areas?
+
+b. Is the 60 Hz line random noise, interference, or bias?
+   Say which, and say what that means about whether averaging would ever have removed it.
+
+
+Question 4: What the bus can really do (5 points)
+
+a. Include your captured ACK edge.
+   Report the 10-90% rise time and the fall time,
+   and explain the asymmetry between them in terms of what is driving the line in each direction.
+
+b. The rise is an RC charge through the pull-up.
+   Extract the time constant from your data and, using the pull-up value from the schematic,
+   compute the bus capacitance.
+   The I2C specification allows a maximum rise time of 300 ns in fast mode
+   and 1000 ns in standard mode.
+   Which mode can your board actually support?
+   Compare that with the maximum in the ADT7420 datasheet and say which of the two is the real limit.
+
+c. You have now measured random noise, interference and at least one bias.
+   Name one example of each from your own data this week,
+   and state in a sentence what you would do about each.
+   Only one of the three is helped by taking more readings.
+
+
+Submission
+
+Upload a single PDF, lab7_postlab.pdf, containing your answers, the log-log averaging plot,
+the NPLC plot, both FFTs and the edge capture.
+Label the axes and the units on all of them.
+
+Your code goes to the Lab 7 - Milestones assignment, uploaded before your demonstration.

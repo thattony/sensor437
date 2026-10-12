@@ -1,0 +1,5 @@
+quantity,value
+fast_n,2048
+fast_std_first100_C,0.000000
+slow300ms_std_C,0.017963
+departure_N,4

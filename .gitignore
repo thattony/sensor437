@@ -47,3 +47,5 @@ envi/
 # OS files
 .DS_Store
 Thumbs.db
+# Lab 7: aborted first M1a settling run (superseded)
+Lab7/results/old_settling_attempt/
