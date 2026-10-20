@@ -1,0 +1,30 @@
+{
+  "register": "CTRL_REG1_A",
+  "address": "0x20",
+  "documented_default": "0x07",
+  "step1_read": "0x07",
+  "step1_pass": true,
+  "step2": [
+    {
+      "wrote": "0x37",
+      "read_back": "0x37",
+      "pass": true
+    },
+    {
+      "wrote": "0x57",
+      "read_back": "0x57",
+      "pass": true
+    }
+  ],
+  "step2_pass": true,
+  "ctrl_reg4_a_untouched": "0x00",
+  "mag_id": [
+    "0x48",
+    "0x34",
+    "0x33"
+  ],
+  "mag_id_pass": true,
+  "saved": "2026-10-19 22:50:31",
+  "bitfile": "U:\\ece437\\midterm\\SensorBoard_I2C\\bitfile\\SensorBoard_Top.bit",
+  "scl_hz": 100000.0
+}

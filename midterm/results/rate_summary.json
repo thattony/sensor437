@@ -1,0 +1,65 @@
+{
+  "seconds": 30.001014399982523,
+  "polls": 20528,
+  "new_samples": 5059,
+  "sample_rate_hz": 168.62763147111943,
+  "poll_rate_hz": 684.2435301125004,
+  "polls_per_new_sample": 4.0577189167819725,
+  "overruns_zyxor": 1,
+  "consecutive_identical_new_samples": 13,
+  "min_samples_in_any_1s": 162,
+  "max_samples_in_any_1s": 175,
+  "max_gap_ms": 15.928000000000004,
+  "mean_gap_ms": 5.930777382364571,
+  "scl_hz": 100000.0,
+  "bytes_per_transaction_on_bus": 10,
+  "data_bytes_per_transaction": 7,
+  "i2c_cycles_mean": 93113.60795011692,
+  "i2c_time_us_mean": 923.7461106162392,
+  "host_time_per_poll_us_mean": 1459.9859315181047,
+  "host_time_per_poll_us_median": 1460.8000055886805,
+  "odr_hz": 200,
+  "ctrl_reg1_a": "0x67",
+  "overhead_us_per_poll": 536.2398209018655,
+  "six_single_reads": {
+    "samples": 820,
+    "seconds": 5.001170800009277,
+    "rate_hz": 163.96160674985924,
+    "i2c_time_us_per_read": 383.7519115369725,
+    "i2c_time_us_per_sample": 2302.511469221835
+  },
+  "ungated_2s": {
+    "reads": 1369,
+    "reads_per_s": 684.5,
+    "changes_between_consecutive_reads": 469,
+    "changes_per_s": 234.5
+  },
+  "odr_sweep": [
+    {
+      "odr_hz": 50,
+      "new_per_s": 43.32537734981673,
+      "polls_per_s": 684.2076899936442,
+      "overruns": 1
+    },
+    {
+      "odr_hz": 100,
+      "new_per_s": 85.95883145039669,
+      "polls_per_s": 686.0047827766155,
+      "overruns": 1
+    },
+    {
+      "odr_hz": 200,
+      "new_per_s": 166.62507704758102,
+      "polls_per_s": 685.8288171278434,
+      "overruns": 1
+    },
+    {
+      "odr_hz": 400,
+      "new_per_s": 340.86484709073676,
+      "polls_per_s": 684.0621027148412,
+      "overruns": 1
+    }
+  ],
+  "saved": "2026-10-19 22:59:06",
+  "bitfile": "U:\\ece437\\midterm\\SensorBoard_I2C\\bitfile\\SensorBoard_Top.bit"
+}

@@ -1,0 +1,49 @@
+{
+  "method": "time between data-change events, ungated 7-byte polls ~685/s, torn reads merged",
+  "runs": [
+    {
+      "odr_nominal_hz": 10,
+      "seconds": 10,
+      "polls": 6860,
+      "change_events": 99,
+      "median_interval_ms": 101.10344999702647,
+      "true_odr_from_median_hz": 9.890859313202574,
+      "event_rate_hz": 9.883976936698076,
+      "gated_zyxda_rate_hz": 8.5,
+      "capture_fraction": 0.859379324974725
+    },
+    {
+      "odr_nominal_hz": 50,
+      "seconds": 6,
+      "polls": 4125,
+      "change_events": 297,
+      "median_interval_ms": 20.325800025602803,
+      "true_odr_from_median_hz": 49.1985554684381,
+      "event_rate_hz": 49.42492513311842,
+      "gated_zyxda_rate_hz": 42.666666666666664,
+      "capture_fraction": 0.8672341344257195
+    },
+    {
+      "odr_nominal_hz": 100,
+      "seconds": 6,
+      "polls": 4123,
+      "change_events": 591,
+      "median_interval_ms": 10.184400016441941,
+      "true_odr_from_median_hz": 98.18938753245904,
+      "event_rate_hz": 98.50846496636193,
+      "gated_zyxda_rate_hz": 82.5,
+      "capture_fraction": 0.8402130013564602
+    },
+    {
+      "odr_nominal_hz": 200,
+      "seconds": 8,
+      "polls": 5503,
+      "change_events": 1578,
+      "median_interval_ms": 4.503800009842962,
+      "true_odr_from_median_hz": 222.03472574593025,
+      "event_rate_hz": 197.33335936081906,
+      "gated_zyxda_rate_hz": 170.125,
+      "capture_fraction": 0.7662089766745339
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "sub_correct": "0xA8",
+  "sub_broken": "0x28",
+  "runs": [
+    {
+      "orientation": "+X",
+      "correct_ax_g": 1.00204,
+      "correct_ay_g": -0.00798,
+      "correct_az_g": -0.032025,
+      "correct_mag_g": 1.0025833843750853,
+      "correct_burst_bytes": [
+        "C0",
+        "3E",
+        "C0",
+        "FF",
+        "60",
+        "FE"
+      ],
+      "broken_ax_g": -0.755005,
+      "broken_ay_g": -0.755,
+      "broken_az_g": -0.755,
+      "broken_mag_g": 1.3077012464722209,
+      "broken_std_g": 7.071067811865482e-05,
+      "broken_example_bytes": [
+        "C0",
+        "D0",
+        "D0",
+        "D0",
+        "D0",
+        "D0"
+      ],
+      "all_six_bytes_identical_every_read": false,
+      "distinct_xl_values": [
+        "C0",
+        "D0"
+      ],
+      "every_axis_equals_prediction_from_xl": false,
+      "mag_over_abs_ax": 1.7320431606045268
+    },
+    {
+      "orientation": "-Z",
+      "correct_ax_g": 0.112705,
+      "correct_ay_g": -0.00084,
+      "correct_az_g": -1.03919,
+      "correct_mag_g": 1.0452841617115416,
+      "correct_burst_bytes": [
+        "80",
+        "06",
+        "00",
+        "00",
+        "60",
+        "BF"
+      ],
+      "broken_ax_g": -1.01714,
+      "broken_ay_g": -1.01714,
+      "broken_az_g": -1.01714,
+      "broken_mag_g": 1.7617381584106078,
+      "broken_std_g": 0.07269057710597708,
+      "broken_example_bytes": [
+        "80",
+        "80",
+        "80",
+        "80",
+        "80",
+        "80"
+      ],
+      "all_six_bytes_identical_every_read": true,
+      "distinct_xl_values": [
+        "80",
+        "C0"
+      ],
+      "every_axis_equals_prediction_from_xl": true,
+      "mag_over_abs_ax": 1.7320508075688774
+    }
+  ],
+  "saved": "2026-10-19 22:55:15",
+  "bitfile": "U:\\ece437\\midterm\\SensorBoard_I2C\\bitfile\\SensorBoard_Top.bit",
+  "scl_hz": 100000.0
+}

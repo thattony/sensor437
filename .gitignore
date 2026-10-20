@@ -49,3 +49,11 @@ envi/
 Thumbs.db
 # Lab 7: aborted first M1a settling run (superseded)
 Lab7/results/old_settling_attempt/
+
+# xsim simulation output
+xsim.dir/
+*.pb
+midterm/SensorBoard_I2C/sim/run/
+
+# Midterm: intermediate HTML render of the report (the PDF is kept)
+midterm/midterm_report1.html
