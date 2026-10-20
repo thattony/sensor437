@@ -1,5 +1,18 @@
 # Midterm Part 1 — Demo Guide
 
+## Cheat sheet — run these in order
+
+| # | Command | What to do with the board |
+|---|---|---|
+| 0 | *(no command)* | Close FrontPanel. Unplug the board's power, wait 5 s, plug it back in. |
+| 1 | `cd U:\ece437\midterm` | — |
+| 2 | `py -3.14 midterm_p1_python.py kat` | Leave it flat on the bench. Step 1 must read `0x07`. |
+| 3 | `py -3.14 midterm_p1_python.py live` | Tilt it slowly in every direction. \|a\| stays at about 1.00. **Ctrl+C** to stop. |
+| 4 | `py -3.14 midterm_p1_python.py six` | 6 prompts. For each one: place the board, type its position, press **Enter**, let go for 3 s.<br>1. `component side up` (flat)<br>2. `component side down` (flipped over)<br>3. `USB edge down` (standing on the USB edge)<br>4. `opposite edge down` (flip it 180° onto the other short edge)<br>5. `left edge down` (standing on a long edge)<br>6. `right edge down` (flip it 180° onto the other long edge) |
+| 5 | `py -3.14 midterm_p1_python.py broken` | 2 prompts: **component side up** → Enter, then **standing on any edge** → Enter. Hold it still each time. |
+| 6 | `py -3.14 midterm_p1_python.py rate` | Leave it alone for about 45 s. Look for `PASS: >= 100 samples/s for 30 s`. |
+| 7 | `py -3.14 midterm_p1_python.py mag` | *(Optional, not graded)* Slowly turn it through every orientation for 20 s. |
+
 Work in **PowerShell**, in the midterm folder:
 
 ```powershell
