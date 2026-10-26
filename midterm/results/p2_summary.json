@@ -1,0 +1,39 @@
+{
+  "bus0": {
+    "devices": "ADT7420, HTS221, LPS35HW (3 devices)",
+    "edges": 120,
+    "rise_mean_ns": 1010.5741201058215,
+    "rise_std_ns": 24.980714574971294,
+    "fall_mean_ns": 6.20391944444394,
+    "fall_std_ns": 0.3901322295467571,
+    "tau_from_rise_ns": 459.93210276710977,
+    "tau_logfit_ns": 459.00533178519044,
+    "R_pullup_ohm": 10000.0,
+    "C_bus_pF": 45.993210276710975,
+    "tr_spec_30_70_ns": 389.6994865979596,
+    "max_mode": "Standard-mode",
+    "max_scl_Hz": 100000.0,
+    "mode_tr_limit_ns": 1000.0
+  },
+  "bus1": {
+    "devices": "LSM303 accel + mag, AD7156 (2 devices)",
+    "edges": 120,
+    "rise_mean_ns": 949.1475418951435,
+    "rise_std_ns": 9.220512489721694,
+    "fall_mean_ns": 2.6947861773526847,
+    "fall_std_ns": 0.03482559346300513,
+    "tau_from_rise_ns": 431.97566224469955,
+    "tau_logfit_ns": 430.10307661852715,
+    "R_pullup_ohm": 10000.0,
+    "C_bus_pF": 43.19756622446995,
+    "tr_spec_30_70_ns": 366.01205435927926,
+    "max_mode": "Standard-mode",
+    "max_scl_Hz": 100000.0,
+    "mode_tr_limit_ns": 1000.0
+  },
+  "C_difference_pF": 2.7956440522410233,
+  "rise_definition": "10-90 % of the ACK-release edge (pull-up only)",
+  "fall_definition": "90-10 % of the ACK edge (slave pulling low)",
+  "spec": "UM10204 Table 10 t_r, 30 %-70 % VDD",
+  "saved": "2026-10-26 13:02:51"
+}

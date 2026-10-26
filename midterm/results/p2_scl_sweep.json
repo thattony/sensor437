@@ -1,0 +1,11 @@
+{
+  "bus0": {
+    "highest_all_correct_Hz": 1145454.5454545454,
+    "first_step_with_errors_Hz": 1260000.0
+  },
+  "bus1": {
+    "highest_all_correct_Hz": 1050000.0,
+    "first_step_with_errors_Hz": 1145455.0
+  },
+  "saved": "2026-10-26 13:26:37"
+}
