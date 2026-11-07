@@ -1,0 +1,11 @@
+build/
+sim/xsim.dir/
+sim/*.log
+sim/*.jou
+sim/*.pb
+sim/*.wdb
+sim/tb_lab9.vcd
+.venv/
+__pycache__/
+*.pyc
+.Xil/

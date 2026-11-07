@@ -1,0 +1,15 @@
+{
+  "scope": "KEYSIGHT TECHNOLOGIES,MSO-X 3024T,MY54440298,07.50.2021102830",
+  "pulses_seen": 10,
+  "requested": 10,
+  "period_ms": 4.9991111111111115,
+  "freq_hz": 200.03556187766713,
+  "high_ms": 2.4959999999999996,
+  "duty_pct": 49.92887624466571,
+  "en1_low_after": true,
+  "dir1_level": 1,
+  "dir1_changes_while_en1_high": 0,
+  "pass_": true,
+  "duty_set": 50,
+  "dir_set": 1
+}

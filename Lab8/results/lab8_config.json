@@ -1,0 +1,16 @@
+{
+  "radial": "y",
+  "radial_sign": 1,
+  "tangential": "z",
+  "tangential_sign": 1,
+  "fs": 2,
+  "offset_r": -0.007532599718043278,
+  "offset_t": -0.03432920702148572,
+  "G": 0.26539246065956784,
+  "beta_deg": 15.305554129551249,
+  "phi_home_deg": 6.826081788693978,
+  "expected_deg": 28.602900690262064,
+  "deg_per_pulse": 0.9475074096356123,
+  "dir_sign": 1,
+  "supply_resource": "ASRL4::INSTR"
+}

@@ -1,0 +1,43 @@
+{
+  "label": "stall",
+  "pulses": 1000,
+  "dir": 0,
+  "duty": 50,
+  "protect": true,
+  "phi_before": 28.335001443041346,
+  "phi_after": 28.293492495841214,
+  "phi_after_std": 0.6335518756358476,
+  "moved_deg": -0.04150894720012843,
+  "sent": 61,
+  "target": 1000,
+  "tripped": true,
+  "fault": 1,
+  "fault_code": 1,
+  "fault_pulses": 61,
+  "t_stop_rel": 0.3118543749999958,
+  "t_stop_abs": 60.35001125,
+  "settle_s": 0.0017906250000052637,
+  "settled": true,
+  "trip_info": {
+    "window": 3,
+    "t_end": 0.30000000000000426,
+    "phi_now": 6.374081808884736,
+    "moved_deg": 0.1148337504224011,
+    "moved_atan_deg": 0.04004031837339994,
+    "threshold_deg": 2.1150529224351695,
+    "strikes": 2,
+    "verdict": "STRIKE 2",
+    "pulses": 61
+  },
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 4.0,
+    "i_limit": 1.5,
+    "v_meas_on": 4.001572,
+    "i_meas_on": 0.0004662523
+  },
+  "trip_latency_ms": 4.129374999990887,
+  "csv": "U:\\ece437\\Lab8\\results\\stall_20261103_152941.csv"
+}

@@ -20,7 +20,7 @@ CSS = """
 body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #111;
        max-width: 7.2in; margin: 0 auto; }
 h1 { font-size: 17pt; margin: 0 0 4pt; }
-h2 { font-size: 13pt; margin: 16pt 0 4pt; border-bottom: 1px solid #999; padding-bottom: 2pt; }
+h2 { font-size: 13pt; margin: 16pt 0 4pt; border-bottom: 1px solid #999; padding-bottom: 2pt; break-after: avoid; }
 h3 { font-size: 11pt; margin: 11pt 0 3pt; }
 p { margin: 4pt 0; }
 table { border-collapse: collapse; margin: 6pt 0; font-size: 9.5pt; }

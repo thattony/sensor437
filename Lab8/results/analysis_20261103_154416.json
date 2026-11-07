@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "file": "ring_20261103_154409.csv",
+      "alpha_mean_first_40ms": 29.87200654464285,
+      "alpha_peak": 43.368408607142854,
+      "torque_mean_Nm": 0.058549132827499996,
+      "torque_peak_Nm": 0.08500208087000001,
+      "a_t_step_g": 0.304609693877551,
+      "J": 0.0019600000000000004,
+      "r": 0.1,
+      "ring_pp_at_g": 0.22400000000000003,
+      "overshoot_from_t_s": 0.19222,
+      "move_deg": 84.77056050298907,
+      "final_deg": 22.55207070707071,
+      "overshoot_deg": 19.48192929292929,
+      "overshoot_pct": 22.981951726321714,
+      "band_deg": 1.7520882308922605,
+      "settle_s": 0.39688,
+      "settle_at_s": 0.39688,
+      "run_s": 0.29347999999999996,
+      "max_rate_per_s": 1.5458817709621568,
+      "rate_definition": "1 / (settling time + 0.25 s reading); add the move time for a moving cycle",
+      "plot": "U:\\ece437\\Lab8\\results\\ring_20261103_154409_analysis.png"
+    }
+  ]
+}

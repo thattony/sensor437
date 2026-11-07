@@ -1,0 +1,43 @@
+{
+  "label": "calibrate_free_50pct",
+  "pulses": 429,
+  "dir": 1,
+  "duty": 50,
+  "protect": true,
+  "phi_before": -114.18496786186586,
+  "phi_after": -113.87549717537208,
+  "phi_after_std": 0.7895901770225499,
+  "moved_deg": 0.30947068649379617,
+  "sent": 341,
+  "target": 429,
+  "tripped": true,
+  "fault": 1,
+  "fault_code": 1,
+  "fault_pulses": 341,
+  "t_stop_rel": 1.7115049999999883,
+  "t_stop_abs": 255.489859375,
+  "settle_s": 0.5067500000000109,
+  "settled": true,
+  "trip_info": {
+    "window": 17,
+    "t_end": 1.6999999999999034,
+    "phi_now": -115.43364833949875,
+    "moved_deg": 1.0122833015519073,
+    "moved_atan_deg": -1.3468779666003456,
+    "threshold_deg": 2.0,
+    "strikes": 2,
+    "verdict": "STRIKE 2",
+    "pulses": 341
+  },
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 4.0,
+    "i_limit": 1.5,
+    "v_meas_on": 4.001351,
+    "i_meas_on": 0.00169067
+  },
+  "trip_latency_ms": 3.780000000091377,
+  "csv": "U:\\ece437\\Lab8\\results\\calibrate_free_50pct_20261103_153256.csv"
+}

@@ -1,0 +1,32 @@
+{
+  "label": "interactive",
+  "pulses": 60,
+  "dir": 1,
+  "duty": 50,
+  "protect": true,
+  "phi_before": -14.79267663086458,
+  "phi_after": -12.389563148986733,
+  "phi_after_std": 5.498683261345902,
+  "moved_deg": 2.4031134818778526,
+  "sent": 60,
+  "target": 60,
+  "tripped": false,
+  "fault": 0,
+  "fault_code": 0,
+  "fault_pulses": 0,
+  "t_stop_rel": 0.3007700000000568,
+  "t_stop_abs": 1121.5214518750001,
+  "settle_s": 1.7754600000000664,
+  "settled": true,
+  "trip_info": null,
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 6.0,
+    "i_limit": 1.5,
+    "v_meas_on": 6.003509,
+    "i_meas_on": 0.000418716
+  },
+  "csv": "U:\\ece437\\Lab8\\results\\interactive_20261103_150759.csv"
+}

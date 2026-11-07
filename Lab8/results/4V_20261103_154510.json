@@ -1,0 +1,32 @@
+{
+  "label": "4V",
+  "pulses": 60,
+  "dir": 1,
+  "duty": 50,
+  "protect": true,
+  "phi_before": -62.02260430221005,
+  "phi_after": -27.58932697874111,
+  "phi_after_std": 0.5590487583899553,
+  "moved_deg": 34.43327732346893,
+  "sent": 60,
+  "target": 60,
+  "tripped": false,
+  "fault": 0,
+  "fault_code": 0,
+  "fault_pulses": 220,
+  "t_stop_rel": 0.30120499999998174,
+  "t_stop_abs": 989.3105568750001,
+  "settle_s": 0.35912499999994907,
+  "settled": true,
+  "trip_info": null,
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 4.0,
+    "i_limit": 1.5,
+    "v_meas_on": 4.00034,
+    "i_meas_on": 0.001608172
+  },
+  "csv": "U:\\ece437\\Lab8\\results\\4V_20261103_154510.csv"
+}

@@ -1,0 +1,14 @@
+{
+  "std_100_deg": 0.5987986691558621,
+  "mean_deg": -4.405863731613176,
+  "std_all_deg": 0.6186599998748908,
+  "n_all": 2177,
+  "noise_radial_mg": 1.9823336647045524,
+  "noise_tangential_mg": 2.920467455889007,
+  "G_g": 0.2708250108363106,
+  "predicted_prelab_deg": 0.22137389267620128,
+  "predicted_measured_noise_deg": 0.617541191020266,
+  "spacing_s": 0.05,
+  "odr_hz": 400,
+  "fs_g": 2
+}

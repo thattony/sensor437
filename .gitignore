@@ -57,3 +57,11 @@ midterm/SensorBoard_I2C/sim/run/
 
 # Midterm: intermediate HTML render of the report (the PDF is kept)
 midterm/midterm_report1.html
+
+# Waveform dumps / Vivado telemetry
+*.vcd
+usage_statistics_webtalk.*
+webtalk*
+
+# Lab 8: intermediate HTML render of the post lab (the PDF and .md are kept)
+Lab8/lab8_postlab.html

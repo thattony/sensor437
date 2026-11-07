@@ -1,0 +1,3 @@
+window,t_end,phi_now,moved_deg,moved_atan_deg,threshold_deg,strikes,verdict,pulses
+1,0.1000,-85.1654,32.8984,-22.8600,7.1507,0,grace,21
+2,0.2000,-82.1093,36.1859,3.0561,7.1507,0,ok,41

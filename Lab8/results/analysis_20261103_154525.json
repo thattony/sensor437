@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "file": "6V_20261103_154455.csv",
+      "alpha_mean_first_40ms": 24.902011334821424,
+      "alpha_peak": 57.99332592857143,
+      "torque_mean_Nm": 0.04880794221625,
+      "torque_peak_Nm": 0.11366691882000002,
+      "a_t_step_g": 0.2539298469387755,
+      "J": 0.0019600000000000004,
+      "r": 0.1,
+      "ring_pp_at_g": 0.136,
+      "overshoot_from_t_s": 0.28575500000000004,
+      "move_deg": 95.61573376623377,
+      "final_deg": 33.367090909090905,
+      "overshoot_deg": 3.9899090909090944,
+      "overshoot_pct": 4.17285830872127,
+      "band_deg": 1.6231790853840495,
+      "settle_s": 0.621705,
+      "settle_at_s": 0.371565,
+      "run_s": 0.296055,
+      "max_rate_per_s": 1.1471770839905702,
+      "rate_definition": "1 / (settling time + 0.25 s reading); add the move time for a moving cycle",
+      "plot": "results\\6V_20261103_154455_analysis.png"
+    },
+    {
+      "file": "4V_20261103_154510.csv",
+      "alpha_mean_first_40ms": 14.490451138392858,
+      "alpha_peak": 18.921831107142857,
+      "torque_mean_Nm": 0.028401284231250008,
+      "torque_peak_Nm": 0.037086788970000006,
+      "a_t_step_g": 0.14776147959183675,
+      "J": 0.0019600000000000004,
+      "r": 0.1,
+      "ring_pp_at_g": 0.10099999999999999,
+      "overshoot_from_t_s": 0.12613999999999997,
+      "move_deg": 34.43028262213977,
+      "final_deg": -27.593696969696968,
+      "overshoot_deg": 18.556696969696965,
+      "overshoot_pct": 53.89644102939898,
+      "band_deg": 1.6896124848006022,
+      "settle_s": 0.38186499999999995,
+      "settle_at_s": 0.326085,
+      "run_s": 0.29348,
+      "max_rate_per_s": 1.582616539925459,
+      "rate_definition": "1 / (settling time + 0.25 s reading); add the move time for a moving cycle",
+      "plot": "results\\4V_20261103_154510_analysis.png"
+    }
+  ]
+}

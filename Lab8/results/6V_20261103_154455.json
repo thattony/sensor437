@@ -1,0 +1,32 @@
+{
+  "label": "6V",
+  "pulses": 60,
+  "dir": 1,
+  "duty": 50,
+  "protect": true,
+  "phi_before": -62.273038751701996,
+  "phi_after": 33.35311563604345,
+  "phi_after_std": 0.5456075934097218,
+  "moved_deg": 95.62615438774543,
+  "sent": 60,
+  "target": 60,
+  "tripped": false,
+  "fault": 0,
+  "fault_code": 0,
+  "fault_pulses": 220,
+  "t_stop_rel": 0.30377999999996064,
+  "t_stop_abs": 974.3568743750001,
+  "settle_s": 0.56120999999996,
+  "settled": true,
+  "trip_info": null,
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 6.0,
+    "i_limit": 1.5,
+    "v_meas_on": 6.00286,
+    "i_meas_on": 0.002288923
+  },
+  "csv": "U:\\ece437\\Lab8\\results\\6V_20261103_154455.csv"
+}

@@ -1,0 +1,32 @@
+{
+  "label": "ring",
+  "pulses": 60,
+  "dir": 1,
+  "duty": 50,
+  "protect": true,
+  "phi_before": -62.26520774738417,
+  "phi_after": 22.55089470677115,
+  "phi_after_std": 0.5784081324929494,
+  "moved_deg": 84.81610245415533,
+  "sent": 60,
+  "target": 60,
+  "tripped": false,
+  "fault": 0,
+  "fault_code": 0,
+  "fault_pulses": 220,
+  "t_stop_rel": 0.30076999999994314,
+  "t_stop_abs": 928.7260468750001,
+  "settle_s": 0.3084949999999935,
+  "settled": true,
+  "trip_info": null,
+  "en1_after": 0,
+  "running_after": 0,
+  "drops": 0,
+  "supply": {
+    "v_set": 6.0,
+    "i_limit": 1.5,
+    "v_meas_on": 6.003348,
+    "i_meas_on": 0.001990178
+  },
+  "csv": "U:\\ece437\\Lab8\\results\\ring_20261103_154409.csv"
+}
