@@ -75,6 +75,12 @@ update_compile_order -fileset sources_1
 #   (no pipe endpoints in this lab)
 # ----------------------------------------------------------------------------
 set fp_ip "$proj_root/opalkelly/ip_repos/FrontPanel-Vivado-IP-Dist-v1.0.6/FrontPanel-Subsystem-v1.0.6"
+# This copy of the IP is incomplete in my checkout (gateware/common is missing, so IP
+# generation fails with "TTCL input file ... not readable"). Fall back to the complete
+# copy of the same v1.0.6 IP that the midterm / Lab 8 builds use.
+if {![file exists "$fp_ip/gateware/common/param_loop.ttcl"]} {
+    set fp_ip [file normalize "$proj_root/../midterm/SensorBoard_I2C/opalkelly/ip_repos/FrontPanel-Vivado-IP-Dist-v1.0.6/FrontPanel-Subsystem-v1.0.6"]
+}
 if {![file exists $fp_ip]} {
     puts "ERROR: FrontPanel Subsystem IP repository not found at $fp_ip"
     exit 1

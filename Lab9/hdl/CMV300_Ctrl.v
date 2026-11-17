@@ -19,8 +19,7 @@
 //     sequencer sits: 0 OFF, 1 CLK_ON, 2 RES_WAIT, 3 READY, 4 RES_LOW.
 //
 // The PORT LIST IS FROZEN - the wrapper, the testbench and the Python all
-// depend on it (INTERFACE.md). This stub compiles, drives every output to its
-// safe inactive level, and fails the testbench with named checks.
+// depend on it (INTERFACE.md).
 //============================================================================
 module CMV300_Ctrl #(
     parameter integer T_WAIT = 2016,    // suggested: 20 us at 100.8 MHz (20x the minimum)

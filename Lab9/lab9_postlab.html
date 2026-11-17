@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset='utf-8'><style>
+body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #111;
+       max-width: 7.2in; margin: 0 auto; }
+h1 { font-size: 17pt; margin: 0 0 4pt; }
+h2 { font-size: 13pt; margin: 16pt 0 4pt; border-bottom: 1px solid #999; padding-bottom: 2pt; break-after: avoid; }
+h3 { font-size: 11pt; margin: 11pt 0 3pt; }
+p { margin: 4pt 0; }
+table { border-collapse: collapse; margin: 6pt 0; font-size: 9.5pt; }
+th, td { border: 1px solid #888; padding: 2pt 6pt; text-align: left; vertical-align: top; }
+th { background: #eee; }
+code { font-family: Consolas, monospace; font-size: 9.5pt; background: #f3f3f3; padding: 0 2px; }
+pre { font-family: Consolas, monospace; font-size: 9pt; background: #f3f3f3; padding: 5pt; white-space: pre-wrap; }
+img { max-width: 100%; display: block; margin: 6pt auto 2pt; }
+.cap { text-align: center; font-size: 9pt; color: #333; margin-bottom: 8pt; }
+ul, ol { margin: 3pt 0 3pt 18pt; padding: 0; }
+li { margin: 1pt 0; }
+@page { size: Letter; margin: 0.6in; }
+</style></head><body><h1>ECE 437 Lab 9 — Post Lab: CMV300 control plane</h1>
+<p>Name: Tong Li   NetID: tongli5   Date of data: 2026-11-10</p>
+<h2>Question 1: The control plane</h2>
+<p><b>1(b).</b> <i>Reading 232 from register 1, and reconstructing 488 from registers 1 and 2, are two different claims about your SPI master. State precisely what each one proves that the other does not.</i></p>
+<ul><li><b>232:</b> the bits of one frame are aligned (a one-bit slip reads 208 or 116).</li><li><b>488:</b> two addresses return two different bytes, in the right order.</li></ul>
+<p><b>1(c).</b> <i>Report the temperature registers at the start of your session and after the sensor had been running for several minutes. What does the change tell you, and what would a value that never moved have suggested?</i></p>
+<table><tr><th>When</th><th>Raw value</th></tr><tr><td>Start</td><td><b>5420</b></td></tr><tr><td>After 309 s</td><td><b>5468</b></td></tr></table>
+<p>The change: the reading is live and the sensor is running and warming. No change: a constant or stale word.</p>
+<h2>Question 2: The clock, and the errata</h2>
+<p><b>2(a).</b> <i>Report your three CLK_OUT readings with the register state at each. Compute the percentage error the wrong PLL band would have introduced, and state what that would have done to every number in Milestone 3.</i></p>
+<table><tr><th>Register 69</th><th>Register 83</th><th>CLK_OUT (cycles per ms)</th></tr><tr><td>0</td><td>155</td><td><b>0</b></td></tr><tr><td>9</td><td>155</td><td><b>35,344</b></td></tr><tr><td>9</td><td>251</td><td><b>25,008</b></td></tr></table>
+<p>Error: 35,344 / 25,000 = <b>41.4 % fast</b>. Every sensor time would be 0.707 of its value: readout 8.97 ms, pipelined period 9.1 ms.</p>
+<p><b>2(b).</b> <i>With the wrong band the sensor runs, answers SPI, and produces frames that look reasonable. Explain in two or three sentences why nothing else in this lab would have caught it — and say what that implies about trusting a device that appears to work.</i></p>
+<p>Nothing else compares CLK_OUT with an independent time base: the row count, pixel count and masks are the same at any frequency. A device that appears to work is only consistent with itself; it needs an independent measurement.</p>
+<h2>Question 3: Two timing regimes</h2>
+<p><b>3(a).</b> <i>Report the two times from Milestone 3a and the pipelined period from 3b. Compare each with your pre lab prediction and give the percentage difference. Give the ratio between the single-frame and pipelined periods.</i></p>
+<table><tr><th>Quantity</th><th>Measured</th><th>Pre lab</th><th>Difference</th></tr><tr><td>FRAME_REQ to first LVAL</td><td><b>6.539 ms</b></td><td>6.539 ms</td><td>0.0 %</td></tr><tr><td>First LVAL to last LVAL</td><td><b>12.688 ms</b></td><td>12.688 ms</td><td>0.0 %</td></tr><tr><td>Pipelined period</td><td><b>12.883 ms</b></td><td>12.883 ms</td><td>0.0 %</td></tr></table>
+<p>Ratio: 19.227 / 12.883 = <b>1.49</b>.</p>
+<p><b>3(b).</b> <i>Explain what pipelining saves, and state clearly what it does not save. Then: one of your two periods answers "how often can I have a frame" and the other answers "how soon can I have one". Say which is which, and name an application that cares about each.</i></p>
+<ul><li>Saves: the exposure time. Does not save: the readout or the FOT.</li><li>How often: pipelined, 12.88 ms. Video.</li><li>How soon: single frame, 19.23 ms. Triggered capture.</li></ul>
+<p><b>3(c).</b> <i>Report your three exposure measurements and the exposure at which the period stopped being flat. Explain physically why the period is independent of exposure below that point and proportional to it above.</i></p>
+<table><tr><th>Exposure</th><th>Period</th></tr><tr><td>1.001 ms</td><td><b>12.883 ms</b></td></tr><tr><td>12.753 ms</td><td><b>12.922 ms</b></td></tr><tr><td>40.001 ms</td><td><b>40.170 ms</b></td></tr></table>
+<img src="file:///U:/ece437/Lab9/results/postlab_3c_sweep.png"><div class="cap">Figure 1. Frame-to-frame period against exposure.</div>
+<p>Knee: <b>12.71 ms</b>. Below it the exposure fits inside the readout; above it the sensor waits for the exposure.</p>
+<h2>Question 4: What the counters revealed</h2>
+<p><b>4(a).</b> <i>A row is 324 pixels, one invalid slot, then 324 pixels. Describe exactly what a counter that assumed 648 contiguous valid pixels would report, and say why that number is more dangerous than an error message would have been.</i></p>
+<p><b>649.</b> It looks like a valid row length, so nothing flags it.</p>
+<p><b>4(b).</b> <i>Report the three deliberate failures from Milestone 3c: which counter revealed each, and what its reading was. Rank them by how quickly you could have identified the cause from that reading alone.</i></p>
+<table><tr><th>Failure</th><th>Counter</th><th>Reading</th></tr><tr><td>1. Register 69 cleared</td><td>CLK_OUT meter</td><td><b>0</b></td></tr><tr><td>2. Number_frames = 0</td><td>Frame counter</td><td><b>6, 22, 45</b> at 100, 300, 600 ms (free-running)</td></tr><tr><td>3. FRAME_REQ under 1 ms after upload</td><td>None</td><td>Normal frame, 6 of 6 trials</td></tr></table>
+<p>Ranking, fastest first: 1, 2, 3.</p>
+<h2>Question 5: What you proved without an image</h2>
+<p><b>5(a).</b> <i>Report your OR and AND masks in hex at both exposures. For each of these faults, state what the two masks would show: one data line stuck high, one stuck low, and one left unconstrained. Then say what the masks do not prove about the parallel bus.</i></p>
+<table><tr><th>Exposure</th><th>OR</th><th>AND</th></tr><tr><td>6.344 ms</td><td><b>0x3FF</b></td><td><b>0x000</b></td></tr><tr><td>40.001 ms</td><td><b>0x3FF</b></td><td><b>0x000</b></td></tr></table>
+<ul><li>Stuck high: that bit is 1 in AND.</li><li>Stuck low: that bit is 0 in OR.</li><li>Unconstrained: looks stuck, or passes both if it toggles on noise.</li><li>Not proven: line order, shorts between lines, timing margin, correct pixel values.</li></ul>
+<p><b>5(b).</b> <i>List every property of the sensor you established in this lab, and next to each write the single number that established it.</i></p>
+<table><tr><th>Property</th><th>Number</th></tr><tr><td>SPI read</td><td>register 1 = 232</td></tr><tr><td>Byte order</td><td>Number_lines = 488</td></tr><tr><td>SPI write</td><td>read back 100</td></tr><tr><td>Reset restores defaults</td><td>register 1 = 232</td></tr><tr><td>Sensor live</td><td>5420 → 5468</td></tr><tr><td>CLK_OUT gated by register 69</td><td>0</td></tr><tr><td>Default PLL band wrong</td><td>35,344 per ms</td></tr><tr><td>Correct PLL band</td><td>25,008 per ms</td></tr><tr><td>Rows per frame</td><td>488</td></tr><tr><td>Pixels per row</td><td>648</td></tr><tr><td>Exposure + FOT</td><td>6.539 ms</td></tr><tr><td>Readout</td><td>12.688 ms</td></tr><tr><td>Pipelined period</td><td>12.883 ms</td></tr><tr><td>Knee</td><td>12.71 ms</td></tr><tr><td>Data lines toggle</td><td>OR 0x3FF, AND 0x000</td></tr></table>
+<p><b>5(c).</b> <i>FRAME_REQ is the first command in this course that returns nothing. Describe in two or three sentences how you verified something that gives no reply, and name three causes of a bad image you have already ruled out.</i></p>
+<p>By its effect on the counters: one pulse gave 1 frame, 488 rows, 648 pixels per row and a first LVAL at 6.539 ms. With no pulse they stayed at 0.</p>
+<p>Ruled out: wrong sensor clock, wrong frame geometry, stuck data line.</p></body></html>

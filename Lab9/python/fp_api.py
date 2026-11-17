@@ -39,6 +39,10 @@ def _candidates():
         base = r"C:\Program Files\Opal Kelly\FrontPanelUSB\API\Python"
         for d in sorted(glob.glob(os.path.join(base, "*", "x64")), reverse=True):
             yield d
+        yield os.path.join(base, "x64")      # lab-PC layout: no version folder, DLL in API\lib\x64
+        _dll = os.path.join(os.path.dirname(base), "lib", "x64")
+        if os.path.isdir(_dll):
+            os.add_dll_directory(_dll)
     if sys.platform.startswith("linux"):
         yield "/usr/local/lib/opalkelly"
 

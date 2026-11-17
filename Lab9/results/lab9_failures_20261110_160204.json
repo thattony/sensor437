@@ -1,0 +1,360 @@
+{
+ "started": "2026-11-10 16:01:59",
+ "failure1": [
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12687,
+   "period": 118366,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "good frame first"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 0,
+   "lval_edges": 0,
+   "req_to_lval": 6539,
+   "readout": 12687,
+   "period": 118366,
+   "clk_out_per_ms": 0,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 69 = 0, cleared, no request"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 0,
+   "req_to_lval": 12909,
+   "readout": 12687,
+   "period": 181322,
+   "clk_out_per_ms": 0,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 69 = 0, after FRAME_REQ"
+  }
+ ],
+ "nf_readback": [
+  0,
+  0
+ ],
+ "nf0_still_running_after_restore": true,
+ "failure2": [
+  {
+   "pixels_per_row": 976,
+   "rows_per_frame": 1,
+   "frames": 0,
+   "lval_edges": 0,
+   "req_to_lval": 12909,
+   "readout": 12687,
+   "period": 181322,
+   "clk_out_per_ms": 25008,
+   "or": 255,
+   "and": 0,
+   "label": "Number_frames = 0, no request, 100 ms"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 6,
+   "lval_edges": 2928,
+   "req_to_lval": 12909,
+   "readout": 12697,
+   "period": 12892,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "Number_frames = 0, 100 ms after REQ"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 22,
+   "lval_edges": 10736,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 12883,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "Number_frames = 0, 300 ms after REQ"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 45,
+   "lval_edges": 21960,
+   "req_to_lval": 12909,
+   "readout": 12687,
+   "period": 12882,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "Number_frames = 0, 600 ms after REQ"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 61,
+   "lval_edges": 29768,
+   "req_to_lval": 12909,
+   "readout": 12692,
+   "period": 12887,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "Number_frames back to 1, +200 ms"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 85,
+   "lval_edges": 41480,
+   "req_to_lval": 12909,
+   "readout": 12693,
+   "period": 12887,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "Number_frames back to 1, +500 ms"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 50728,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "after reset + configure, one REQ"
+  }
+ ],
+ "failure3": [
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 166363,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 69 last, REQ 0.29 ms later (host)",
+   "host_ms": 0.287,
+   "last_reg": 69
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 168741,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 160493,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 69 last, REQ 0.27 ms later (host)",
+   "host_ms": 0.273,
+   "last_reg": 69
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12692,
+   "period": 168182,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 159799,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 69 last, REQ 0.31 ms later (host)",
+   "host_ms": 0.314,
+   "last_reg": 69
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 168881,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 159846,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 83 last, REQ 0.27 ms later (host)",
+   "host_ms": 0.271,
+   "last_reg": 83
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 168729,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12688,
+   "period": 159975,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 83 last, REQ 0.29 ms later (host)",
+   "host_ms": 0.289,
+   "last_reg": 83
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12910,
+   "readout": 12692,
+   "period": 169114,
+   "clk_out_per_ms": 25008,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6540,
+   "readout": 12687,
+   "period": 160163,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "reg 83 last, REQ 0.27 ms later (host)",
+   "host_ms": 0.271,
+   "last_reg": 83
+  },
+  {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 168545,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0,
+   "label": "  same, second REQ after waiting"
+  }
+ ],
+ "masks": [
+  {
+   "exposure_ms": 0.494,
+   "or": "0x03F",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 1.001,
+   "or": "0x07F",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 2.002,
+   "or": "0x0FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 4.004,
+   "or": "0x1FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 6.344,
+   "or": "0x3FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 9.997,
+   "or": "0x3FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 19.994,
+   "or": "0x3FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 40.001,
+   "or": "0x3FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 80.002,
+   "or": "0x3FF",
+   "and": "0x000"
+  }
+ ],
+ "temp_raw": 5451
+}

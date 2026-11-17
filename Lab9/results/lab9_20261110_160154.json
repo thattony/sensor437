@@ -1,0 +1,403 @@
+{
+ "started": "2026-11-10 16:01:48",
+ "bitfile": "default",
+ "design_id": "0xEC437901",
+ "power_up_state": "READY",
+ "temp_start_raw": 5441,
+ "temp_log": [
+  [
+   0.0,
+   5441
+  ],
+  [
+   6.2,
+   5449
+  ]
+ ],
+ "defaults": {
+  "1": 232,
+  "2": 1,
+  "42": 232,
+  "61": 85,
+  "83": 155
+ },
+ "number_lines_burst": {
+  "reg1": 232,
+  "reg2": 1,
+  "value": 488
+ },
+ "write100_readback": 100,
+ "after_reset_reg1": 232,
+ "clk": {
+  "after_power_up": {
+   "regs": {
+    "69": 0,
+    "83": 155
+   },
+   "meter": 0
+  },
+  "reg69_9_band155": {
+   "regs": {
+    "69": 9,
+    "83": 155
+   },
+   "meter": 35296,
+   "samples": [
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35312,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296,
+    35296
+   ]
+  },
+  "reg69_9_band251": {
+   "regs": {
+    "69": 9,
+    "83": 251
+   },
+   "meter": 24992,
+   "samples": [
+    24992,
+    25008,
+    25008,
+    24992,
+    25008,
+    24992,
+    25008,
+    25008,
+    24992,
+    25008,
+    24992,
+    24992,
+    25008,
+    24992,
+    24992,
+    25008,
+    24992,
+    24992,
+    24992,
+    25008,
+    24992,
+    24992,
+    25008,
+    25008,
+    24992,
+    24992,
+    25008,
+    25008,
+    24992,
+    24992,
+    25008,
+    24992,
+    24992,
+    25008,
+    24992,
+    24992,
+    25008,
+    25008,
+    24992,
+    24992,
+    24992,
+    24992,
+    24992,
+    24992,
+    25008,
+    25008,
+    24992,
+    25008,
+    25008,
+    24992
+   ]
+  }
+ },
+ "exp_time_default": 488,
+ "number_frames_default": 1,
+ "single": {
+  "pixels_per_row": 648,
+  "rows_per_frame": 488,
+  "frames": 1,
+  "lval_edges": 488,
+  "req_to_lval": 6539,
+  "readout": 12688,
+  "period": 347742,
+  "clk_out_per_ms": 25008,
+  "or": 1023,
+  "and": 0
+ },
+ "pipelined": {
+  "pixels_per_row": 648,
+  "rows_per_frame": 488,
+  "frames": 9,
+  "lval_edges": 4392,
+  "req_to_lval": 12909,
+  "readout": 12687,
+  "period": 12892,
+  "clk_out_per_ms": 24992,
+  "or": 1023,
+  "and": 0
+ },
+ "sweep": [
+  {
+   "exp_time": 77,
+   "exposure_ms": 1.001,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 154,
+   "exposure_ms": 2.002,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 308,
+   "exposure_ms": 4.004,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 462,
+   "exposure_ms": 6.006,
+   "period_us": 12887
+  },
+  {
+   "exp_time": 615,
+   "exposure_ms": 7.995,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 769,
+   "exposure_ms": 9.997,
+   "period_us": 12888
+  },
+  {
+   "exp_time": 788,
+   "exposure_ms": 10.244,
+   "period_us": 12882
+  },
+  {
+   "exp_time": 808,
+   "exposure_ms": 10.504,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 827,
+   "exposure_ms": 10.751,
+   "period_us": 12892
+  },
+  {
+   "exp_time": 846,
+   "exposure_ms": 10.998,
+   "period_us": 12897
+  },
+  {
+   "exp_time": 865,
+   "exposure_ms": 11.245,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 885,
+   "exposure_ms": 11.505,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 904,
+   "exposure_ms": 11.752,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 923,
+   "exposure_ms": 11.999,
+   "period_us": 12888
+  },
+  {
+   "exp_time": 942,
+   "exposure_ms": 12.246,
+   "period_us": 12901
+  },
+  {
+   "exp_time": 962,
+   "exposure_ms": 12.506,
+   "period_us": 12883
+  },
+  {
+   "exp_time": 981,
+   "exposure_ms": 12.753,
+   "period_us": 12927
+  },
+  {
+   "exp_time": 1000,
+   "exposure_ms": 13.0,
+   "period_us": 13168
+  },
+  {
+   "exp_time": 1019,
+   "exposure_ms": 13.247,
+   "period_us": 13416
+  },
+  {
+   "exp_time": 1038,
+   "exposure_ms": 13.494,
+   "period_us": 13663
+  },
+  {
+   "exp_time": 1058,
+   "exposure_ms": 13.754,
+   "period_us": 13936
+  },
+  {
+   "exp_time": 1077,
+   "exposure_ms": 14.001,
+   "period_us": 14175
+  },
+  {
+   "exp_time": 1096,
+   "exposure_ms": 14.248,
+   "period_us": 14417
+  },
+  {
+   "exp_time": 1115,
+   "exposure_ms": 14.495,
+   "period_us": 14678
+  },
+  {
+   "exp_time": 1135,
+   "exposure_ms": 14.755,
+   "period_us": 14924
+  },
+  {
+   "exp_time": 1154,
+   "exposure_ms": 15.002,
+   "period_us": 15171
+  },
+  {
+   "exp_time": 1173,
+   "exposure_ms": 15.249,
+   "period_us": 15418
+  },
+  {
+   "exp_time": 1192,
+   "exposure_ms": 15.496,
+   "period_us": 15665
+  },
+  {
+   "exp_time": 1212,
+   "exposure_ms": 15.756,
+   "period_us": 15925
+  },
+  {
+   "exp_time": 1231,
+   "exposure_ms": 16.003,
+   "period_us": 16176
+  },
+  {
+   "exp_time": 1538,
+   "exposure_ms": 19.994,
+   "period_us": 20163
+  },
+  {
+   "exp_time": 1923,
+   "exposure_ms": 24.999,
+   "period_us": 25168
+  },
+  {
+   "exp_time": 2308,
+   "exposure_ms": 30.004,
+   "period_us": 30173
+  },
+  {
+   "exp_time": 3077,
+   "exposure_ms": 40.001,
+   "period_us": 40170
+  }
+ ],
+ "masks": [
+  {
+   "exposure_ms": 6.344,
+   "or": "0x3FF",
+   "and": "0x000"
+  },
+  {
+   "exposure_ms": 40.001,
+   "or": "0x3FF",
+   "and": "0x000"
+  }
+ ],
+ "failures": {
+  "control_good_frame": {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 115816,
+   "clk_out_per_ms": 25008,
+   "or": 511,
+   "and": 0
+  },
+  "1_reg69_cleared": {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 0,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 162663,
+   "clk_out_per_ms": 0,
+   "or": 511,
+   "and": 0
+  },
+  "2_number_frames_0": {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 10,
+   "lval_edges": 4880,
+   "req_to_lval": 12909,
+   "readout": 12688,
+   "period": 12883,
+   "clk_out_per_ms": 24992,
+   "or": 511,
+   "and": 0
+  },
+  "3_req_right_after_upload": {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 6539,
+   "readout": 12692,
+   "period": 31493,
+   "clk_out_per_ms": 25008,
+   "or": 511,
+   "and": 0,
+   "host_ms_upload_to_req": 0.121
+  },
+  "3_same_after_waiting": {
+   "pixels_per_row": 648,
+   "rows_per_frame": 488,
+   "frames": 1,
+   "lval_edges": 488,
+   "req_to_lval": 12910,
+   "readout": 12687,
+   "period": 168714,
+   "clk_out_per_ms": 24992,
+   "or": 1023,
+   "and": 0
+  }
+ },
+ "temp_end_raw": 5449,
+ "temp_end_s": 6.2
+}
