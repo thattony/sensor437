@@ -65,3 +65,6 @@ webtalk*
 
 # Lab 8: intermediate HTML render of the post lab (the PDF and .md are kept)
 Lab8/lab8_postlab.html
+
+# Lab 10: PGM copies of result images (the .png and exact .npy are kept)
+Lab10/results/*.pgm

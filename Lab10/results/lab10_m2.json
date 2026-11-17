@@ -1,0 +1,24 @@
+{
+ "test_pattern": {
+  "frames": 100,
+  "rows": 488,
+  "mismatched_pixels": 0,
+  "generator_frames_skipped": 0,
+  "seq_gaps": 0,
+  "fps": 22.933855331434163,
+  "blocks": 464
+ },
+ "real_frames": {
+  "frames": 100,
+  "rows": 488,
+  "seq_first": 103,
+  "seq_last": 202,
+  "seq_gaps": 0,
+  "dropped": 0,
+  "fps": 39.0088598752458,
+  "mean_dn_first_last": [
+   45.27964670613236,
+   45.0105273477029
+  ]
+ }
+}

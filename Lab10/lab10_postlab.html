@@ -1,0 +1,105 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Lab 10 Post Lab</title><style>
+body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #111;
+       max-width: 7.2in; margin: 0 auto; background: #fff; }
+h1 { font-size: 17pt; margin: 0 0 4pt; }
+h2 { font-size: 13pt; margin: 14pt 0 4pt; border-bottom: 1px solid #999; padding-bottom: 2pt; break-after: avoid; }
+p { margin: 4pt 0; }
+table { border-collapse: collapse; margin: 5pt 0; font-size: 9.5pt; break-inside: avoid; }
+th, td { border: 1px solid #888; padding: 2pt 6pt; text-align: left; vertical-align: top; }
+th { background: #eee; }
+code { font-family: Consolas, monospace; font-size: 9.5pt; background: #f3f3f3; padding: 0 2px; }
+img { max-width: 100%; display: block; margin: 6pt auto 2pt; }
+.fig { break-inside: avoid; }
+.cap { text-align: center; font-size: 9pt; color: #333; margin-bottom: 8pt; }
+ul { margin: 3pt 0 3pt 18pt; padding: 0; }
+li { margin: 1pt 0; }
+@page { size: Letter; margin: 0.6in; }
+</style></head><body>
+<h1>ECE 437 Lab 10 — Post Lab: Getting the Pixels Out</h1>
+<p>Name: Tong Li &nbsp; NetID: tongli5 &nbsp; Date of data: 2026-11-17</p>
+
+<h2>Question 1: The front end you wrote</h2>
+<p><b>1(a).</b> <i>Include your first-light image and your test-pattern result, and report how many pixels of the test pattern mismatched. Explain what your packer does at the start of a row and why; if your first version did not reset there, describe what the image looked like and how you recognised the fault.</i></p>
+<div class="fig"><img src="results/lab10_m1_first_light.png" style="width:5.4in">
+<p class="cap">Figure 1. First light: snapshot BRAM, 648 × 244 (every second row), mean 52.0 DN.</p></div>
+<table>
+<tr><th>Test pattern</th><th>Frames</th><th>Pixels checked</th><th>Mismatched</th></tr>
+<tr><td>M1, snapshot path</td><td>5 × (648 × 244)</td><td>790,560</td><td><b>0</b></td></tr>
+<tr><td>M2, DDR3 ring</td><td>100 × (648 × 488)</td><td>31,622,400</td><td><b>0</b></td></tr>
+</table>
+<p>Geometry 648 × 244; OR mask 0x3FF, AND mask 0x000.</p>
+<p>Row start: the position counter is held at 0 for as long as <code>line_valid</code> is low, so every row starts in lane 0. It is not
+cleared on the rising edge of LVAL: on the test pattern LVAL and DVAL rise together, so that clear would land on the first pixel and swallow it.
+The 0 mismatches show my packer never swallowed a pixel. A packer that reset on the rising edge would lose the first pixel of every row and shear the image by one more pixel per row; the test pattern would show it as mismatches from row 1 on.</p>
+
+<p><b>1(b).</b> <i>Suppose the sensor were 650 pixels wide. Describe precisely what your packer would do at the end of each row, what the image would look like, and the smallest change that would fix it.</i></p>
+<ul>
+<li>650 = 4 × 162 + 2. After 162 entries, pixels 648 and 649 sit in the packer buffer. LVAL falls, the counter is held at 0, and they are never pushed. Each row is stored as 648 pixels.</li>
+<li>Image: unpacked at 650 per row, each row starts 2 pixels earlier than the one before, so the image shears by 2 pixels per row and the last 2 columns are missing.</li>
+<li>Fix: when <code>line_valid</code> falls with the counter ≠ 0, push the partial entry with the empty lanes zero-padded (163 entries per row), and have the host drop the 2 pad pixels per row.</li>
+</ul>
+
+<p><b>1(c).</b> <i>What would sampling on the rising edge give you, and could you tell from the image alone? Say what measurement would settle it.</i></p>
+<p>The sensor changes D[9:0] on the rising edge of CLK_OUT. Sampling there lands on the transition: bits from the old and the new pixel get mixed, and setup/hold is violated. The result is either the neighbouring pixel or random bit errors. The image alone cannot tell you: a one-pixel shift is invisible, and sparse bit errors look like noise. The settling measurement is the test-pattern mismatch count, because every pixel has a known value.</p>
+
+<h2>Question 2: The memory wall</h2>
+<p><b>2(a).</b> <i>Report the total block RAM on the device and a full frame as 10-bit and as 16-bit, each as a percentage. Then report what your built design actually uses, from the utilization report, and say what is using it.</i></p>
+<table>
+<tr><th>Quantity</th><th>Size</th><th>% of device</th></tr>
+<tr><td>Device block RAM, 105 × 36 Kb</td><td>472.5 KiB</td><td>100 %</td></tr>
+<tr><td>Full frame, 10-bit</td><td>386.0 KiB</td><td>81.7 %</td></tr>
+<tr><td>Full frame, 16-bit</td><td>617.6 KiB</td><td>130.7 %</td></tr>
+<tr><td><b>Built design</b> (<code>post_route_utilization.rpt</code>)</td><td><b>87.5 tiles</b> = 393.75 KiB</td><td><b>83.3 %</b></td></tr>
+</table>
+<p>Users: snapshot BRAM 62 tiles, pipe FIFO 16, pixel FIFO 5.5, FrontPanel 2, write DMA 2. The DDR3 controller (MIG) uses none.</p>
+
+<p><b>2(b).</b> <i>The snapshot path stores 244 rows rather than 300, even though 300 would fit. Using your own numbers, give the real reason, and say what else on the chip would have had to be sacrificed for the extra rows.</i></p>
+<p>244 = 488 / 2: reading every second row gives the whole field of view at half vertical resolution. 300 rows would only add a band of the scene, not complete it. With 244 rows the design is already at 87.5 of 105 tiles (83.3 %). Scaling the 62 snapshot tiles to 300 rows gives 62 × 300 / 244 ≈ 76, i.e. 14 more tiles and about 101.5 of 105 (97 %). That leaves no room, so the 16-tile pipe FIFO, which keeps the USB link streaming, or the pixel FIFO would have had to shrink.</p>
+
+<h2>Question 3: The interface you did not change</h2>
+<p><b>3(a).</b> <i>State what a frozen interface actually bought here — and what it cost.</i></p>
+<ul>
+<li><b>Bought:</b> no re-verification. The module and bitstream were identical for M1 and M2, the downstream backbone was untouched, and both paths gave 0 mismatched pixels on the first try.</li>
+<li><b>Cost:</b> the entry is sized for the worst case. 10-bit pixels sit in 12-bit lanes, so the frame is 1.5 B/px instead of 1.25 B/px: 474,336 B instead of 395,280 B, 20 % more DDR3 and USB traffic. Rows must also be a multiple of 4 pixels.</li>
+</ul>
+
+<p><b>3(b).</b> <i>Compute the pixel rate that supports and compare it with what the sensor produces. Then: suppose you had made the entry one pixel wide. Describe what would have had to change downstream.</i></p>
+<p>4 px per entry ÷ 2 <code>ui_clk</code> per entry × 100 MHz = <b>200 Mpixel/s</b>, against 25 Mpixel/s from the sensor (8× headroom).</p>
+<p>A one-pixel entry would have needed: a 13-bit pixel FIFO, a new write-DMA packer (the 176-bit accumulator and 128-bit beat assembly), new end-of-frame and padding logic, and a new host unpack format. All of it would need re-verifying. It would also cap the backbone at 50 Mpixel/s, too slow for the faster LVDS front end it was built for.</p>
+
+<h2>Question 4: Rates, drops, and the ceiling</h2>
+<p><b>4(a).</b> <i>Report the delivered frame rate in mode A and in free-run, with the sensor period for each. Explain the difference using the two timing regimes you measured in Lab 9.</i></p>
+<table>
+<tr><th>Mode</th><th>Delivered</th><th>Sensor period</th><th>Dropped</th></tr>
+<tr><td>Mode A</td><td><b>39.2 fps</b></td><td><b>25.60 ms</b></td><td>0</td></tr>
+<tr><td>Free-run</td><td><b>77.6 fps</b></td><td><b>12.88 ms</b></td><td>0</td></tr>
+</table>
+<p>Mode A is the single-frame regime. Each FRAME_REQ waits until the previous frame is stored, so every frame pays FRAME_REQ → first LVAL (6.54 ms) plus readout (12.69 ms), which is 19.23 ms from Lab 9, plus the 6.4 ms between the end of one frame and the next request. The ratio to free-run is 25.60 / 12.88 = 1.99. Free-run is the pipelined regime: the next exposure overlaps the current readout, so the period is readout + FOT = 12.88 ms, the same value Lab 9 measured. In both modes delivered = sensor rate.</p>
+
+<p><b>4(b).</b> <i>Include your plot of measured drop fraction against host rate, with your pre lab prediction drawn over it. Report the deviation at each point, and account for it.</i></p>
+<div class="fig"><img src="results/lab10_m3b_drop_fraction.png" style="width:5.2in">
+<p class="cap">Figure 2. Free-run drop fraction (sequence gaps / sensor frames) against host read rate; dashed line is the pre lab 1 − h/s, s = 77.6 fps.</p></div>
+<table>
+<tr><th>Host target</th><th>Delivered h</th><th>Drop fraction, measured</th><th>Pre lab 1 − h/s</th><th>Deviation</th></tr>
+<tr><td>20 fps</td><td>20.2 fps</td><td>0.733</td><td>0.742</td><td>−0.010</td></tr>
+<tr><td>40 fps</td><td>40.3 fps</td><td>0.468</td><td>0.485</td><td>−0.017</td></tr>
+<tr><td>60 fps</td><td>60.5 fps</td><td>0.206</td><td>0.227</td><td>−0.021</td></tr>
+<tr><td>75 fps</td><td>75.5 fps</td><td>0.010</td><td>0.034</td><td>−0.024</td></tr>
+</table>
+<p>The measurement is always slightly below the prediction, for two reasons. The host ran slightly faster than its target. More importantly, the sensor keeps producing at <i>s</i> while the ring is full and those frames are dropped, but each run starts with the ring nearly empty. The first frames therefore fill free slots instead of being lost, for 3 / (s − h) seconds. That buffered start is a larger share of the run as h approaches s: 0.05 s of a 5 s run at 20 fps, but 1.4 s, longer than the whole 1.3 s run, at 75 fps. So the deviation grows with h.</p>
+
+<p><b>4(c).</b> <i>Show that the frames you received were whole and correct while frames were being dropped. What in the design guarantees that? Then name the single thing that limits your best delivered rate, and give the one measurement that proves it.</i></p>
+<p><b>Integrity:</b> test pattern, free-run, host at 20 fps. 50 frames were received and 133 frames were lost as sequence gaps (e.g. 152, 156, 160 …), with <b>0 mismatched pixels</b>.</p>
+<p><b>Guarantee:</b> each slot goes FREE → WRITING → READY → READING → FREE. The writer only takes a FREE slot and the reader only a READY one, so the two never share a slot. A frame that finds no free slot is discarded whole by the write DMA, counted, and still consumes a sequence number. A loss is therefore a gap, never a torn frame.</p>
+<p><b>Limit: the sensor.</b> Proof: with the host reading as fast as it can, it spent <b>72 %</b> of the time waiting for a frame (9.25 ms of each 12.88 ms period), and the ring never held more than <b>1</b> frame. Every stage downstream was idle waiting for the sensor; reading one frame over USB took only 2.06 ms, about 486 fps of link capacity.</p>
+
+<h2>Question 5: What you would do differently</h2>
+<p><b>5(a).</b> <i>Using your free-run rate, how long a host stall can the ring absorb before the first frame is lost? Name one application where dropping whole frames is the wrong choice, and say what it should do instead.</i></p>
+<p>3 slots × 12.88 ms = <b>38.6 ms</b>. Wrong choice: inline inspection, where each frame is a different part, so a dropped frame is an uninspected part. It should use mode A, where the sensor waits for a free slot and is never dropped, or stop the line and flag it, rather than silently skip.</p>
+
+<p><b>5(b).</b> <i>Name the stage you understand least well and the one measurement that would fix that. Then: which single number surprised you most against your pre lab prediction? Give both numbers and say what your prediction had left out.</i></p>
+<ul>
+<li>Least understood: the DDR3 write path (MIG and write DMA). Measurement: write-DMA busy time per frame, which gives the real DDR3 write bandwidth and its headroom over 25 Mpixel/s.</li>
+<li>Surprise: blocks per frame. Pre lab: <b>618</b> blocks (632,832 B). Measured: <b>464</b> blocks (475,136 B). The prediction assumed 16-bit words; the stored stream is packed 12-bit, 1.5 B/px.</li>
+</ul>
+</body></html>
